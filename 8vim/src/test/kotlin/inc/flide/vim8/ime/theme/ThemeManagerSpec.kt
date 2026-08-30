@@ -145,19 +145,79 @@ class ThemeManagerSpec : FunSpec({
                 every { modePref.get() } returns mode
                 every { androidConfiguration.isDarkTheme() } returns darkMode
                 val manager = ThemeManager(context)
-                val scheme = when {
-                    mode == ThemeMode.CUSTOM -> {
-                        (if (darkMode)darkColorScheme else lightColorScheme)
+                val scheme = when (mode) {
+                    ThemeMode.CUSTOM -> {
+                        (if (darkMode) darkColorScheme else lightColorScheme)
                             .copy(
                                 surface = Color.White,
-                                onSurface = Color.Black
+                                onSurface = Color.Black,
+                                primary = Color.Black
                             )
                     }
 
-                    mode == ThemeMode.DARK ||
-                        (mode == ThemeMode.SYSTEM && darkMode) -> darkColorScheme
-
-                    else -> lightColorScheme
+                    ThemeMode.DARK -> darkColorScheme
+                    ThemeMode.LIGHT -> lightColorScheme
+                    ThemeMode.SYSTEM -> if (darkMode) darkColorScheme else lightColorScheme
+                    ThemeMode.SINDHI_AJRAK -> (if (darkMode) darkColorScheme else lightColorScheme).copy(
+                        surface = Color(0xFF1E0E14),
+                        onSurface = Color(0xFFFFD1D9),
+                        primary = Color(0xFFE11D48),
+                        onPrimary = Color(0xFFFFFFFF),
+                        background = Color(0xFF14080B),
+                        onBackground = Color(0xFFFFE4E6),
+                        surfaceVariant = Color(0xFF2E131E),
+                        onSurfaceVariant = Color(0xFFFDA4AF)
+                    )
+                    ThemeMode.EMERALD_NIGHT -> (if (darkMode) darkColorScheme else lightColorScheme).copy(
+                        surface = Color(0xFF06281E),
+                        onSurface = Color(0xFFA7F3D0),
+                        primary = Color(0xFF10B981),
+                        onPrimary = Color(0xFFFFFFFF),
+                        background = Color(0xFF021711),
+                        onBackground = Color(0xFFD1FAE5),
+                        surfaceVariant = Color(0xFF0D3D2F),
+                        onSurfaceVariant = Color(0xFF6EE7B7)
+                    )
+                    ThemeMode.ROYAL_INDIGO -> (if (darkMode) darkColorScheme else lightColorScheme).copy(
+                        surface = Color(0xFF0F172A),
+                        onSurface = Color(0xFFFDE047),
+                        primary = Color(0xFF38BDF8),
+                        onPrimary = Color(0xFF0F172A),
+                        background = Color(0xFF020617),
+                        onBackground = Color(0xFFE2E8F0),
+                        surfaceVariant = Color(0xFF1E293B),
+                        onSurfaceVariant = Color(0xFF94A3B8)
+                    )
+                    ThemeMode.MIDNIGHT_OLED -> (if (darkMode) darkColorScheme else lightColorScheme).copy(
+                        surface = Color(0xFF000000),
+                        onSurface = Color(0xFF00E5FF),
+                        primary = Color(0xFF00E5FF),
+                        onPrimary = Color(0xFF000000),
+                        background = Color(0xFF000000),
+                        onBackground = Color(0xFFFFFFFF),
+                        surfaceVariant = Color(0xFF121212),
+                        onSurfaceVariant = Color(0xFF80D8FF)
+                    )
+                    ThemeMode.SUNSET_DESERT -> (if (darkMode) darkColorScheme else lightColorScheme).copy(
+                        surface = Color(0xFF2C1810),
+                        onSurface = Color(0xFFFED7AA),
+                        primary = Color(0xFFF97316),
+                        onPrimary = Color(0xFFFFFFFF),
+                        background = Color(0xFF1C0E07),
+                        onBackground = Color(0xFFFFEDD5),
+                        surfaceVariant = Color(0xFF3D2317),
+                        onSurfaceVariant = Color(0xFFFDBA74)
+                    )
+                    ThemeMode.CYBERPUNK_NEON -> (if (darkMode) darkColorScheme else lightColorScheme).copy(
+                        surface = Color(0xFF180A2A),
+                        onSurface = Color(0xFFF43F5E),
+                        primary = Color(0xFF06B6D4),
+                        onPrimary = Color(0xFFFFFFFF),
+                        background = Color(0xFF0D021A),
+                        onBackground = Color(0xFFE879F9),
+                        surfaceVariant = Color(0xFF261042),
+                        onSurfaceVariant = Color(0xFFC084FC)
+                    )
                 }
                 manager.currentTheme.value?.scheme?.shouldBeEqualToComparingFields(scheme)
             }

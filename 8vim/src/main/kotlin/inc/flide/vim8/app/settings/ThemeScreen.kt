@@ -2,8 +2,6 @@ package inc.flide.vim8.app.settings
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.text.capitalize
-import androidx.compose.ui.text.intl.Locale
 import inc.flide.vim8.R
 import inc.flide.vim8.datastore.model.observeAsState
 import inc.flide.vim8.datastore.ui.ColorPreference
@@ -15,7 +13,20 @@ import inc.flide.vim8.lib.compose.Screen
 import inc.flide.vim8.lib.compose.stringRes
 import inc.flide.vim8.theme.ThemeMode
 
-private val modes = ThemeMode.entries.map { it.toString().lowercase().capitalize(Locale.current) }
+private fun themeTitle(mode: ThemeMode): String = when (mode) {
+    ThemeMode.SYSTEM -> "System Default (سسٽم ڊفالٽ)"
+    ThemeMode.LIGHT -> "Light (روشن اڇو)"
+    ThemeMode.DARK -> "Dark (گهاٽو ڪارو)"
+    ThemeMode.SINDHI_AJRAK -> "Sindhi Ajrak (سنڌي اجرڪ - ڳاڙهو ۽ نيرو)"
+    ThemeMode.EMERALD_NIGHT -> "Emerald Night (زمرد سائو)"
+    ThemeMode.ROYAL_INDIGO -> "Royal Indigo (شاهي نيرو ۽ سونھري)"
+    ThemeMode.MIDNIGHT_OLED -> "Midnight AMOLED (نيم رات ڪارو ۽ فيروزي)"
+    ThemeMode.SUNSET_DESERT -> "Sunset Sand (ٿر جو وارياسو)"
+    ThemeMode.CYBERPUNK_NEON -> "Cyberpunk Neon (نيون روشني)"
+    ThemeMode.CUSTOM -> "Custom Colors (پنهنجي مرضي جا رنگ)"
+}
+
+private val modes = ThemeMode.entries.map { themeTitle(it) }
 
 @Composable
 fun ThemeScreen() = Screen {
@@ -35,7 +46,7 @@ fun ThemeScreen() = Screen {
                 onConfirm { prefs.theme.mode.set(ThemeMode.entries[it]) }
                 Preference(
                     title = stringRes(R.string.settings__theme__color__mode__title),
-                    summary = colorMode.toString().lowercase().capitalize(Locale.current),
+                    summary = themeTitle(colorMode),
                     onClick = { show() }
                 )
             }

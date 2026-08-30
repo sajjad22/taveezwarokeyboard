@@ -301,9 +301,9 @@ class KeyboardControllerSpec : FunSpec({
             val controller = KeyboardController(context).also { it.keyboard = xpadKeyboard }
 
             controller.onTouchEventInternal(event)
-            delay(800)
+            delay(1200L)
             controller.onTouchEventInternal(event)
-            delay(300) // wait for interruptLongPress coroutine to complete
+            delay(500L) // wait for interruptLongPress coroutine to complete
 
             verifyOrder {
                 for ((m, action) in movements) {

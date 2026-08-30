@@ -132,15 +132,18 @@ class Keyboard(private val context: Context) {
         yCentreOffset: Int,
         characterHeight: Float
     ) {
-        val spRadiusValue = radiusSizeFactor.toFloat()
-        val radius = (spRadiusValue / XPAD_CIRCLE_RADIUS_FACTOR * keyboardHeight) / 2f
+        val spRadiusValue = radiusSizeFactor.coerceIn(1, 40).toFloat()
+        val radius = (0.06f + (spRadiusValue / 40f) * 0.22f) * keyboardHeight
         val offsetX = xCentreOffset * XPAD_CIRCLE_OFFSET_FACTOR
         val offsetY = yCentreOffset * XPAD_CIRCLE_OFFSET_FACTOR
 
+        val bottomMargin = characterHeight * 0.9f
+        val usableHeight = keyboardHeight - bottomMargin
+
         val smallDim = min(
-            keyboardWidth / 2 - offsetX,
-            keyboardHeight / 2 - abs(offsetY)
-        )
+            keyboardWidth / 2 - abs(offsetX),
+            usableHeight / 2 - abs(offsetY)
+        ) * 0.92f
         lengthOfLineDemarcatingSectors = hypot(smallDim, smallDim) - radius - characterHeight
 
         val x = if (isTabletLandscape) {
@@ -154,19 +157,20 @@ class Keyboard(private val context: Context) {
             keyboardWidth / 2f + offsetX
         }
 
-        val circleCenter = Offset(x, y = keyboardHeight / 2f + offsetY)
+        val circleCenter = Offset(x, y = usableHeight / 2f + offsetY)
         circle.centre = circleCenter
         circle.radius = radius
 
         val letterPositions = List(4 * 2 * 4 * 2) { 0f }.toFloatArray()
         val matrix = Matrix()
-        val eastEdge = circleCenter.x + radius + characterHeight / 2f
+        val eastEdge = circleCenter.x + radius + characterHeight * 0.65f
+        val lateralOffset = characterHeight * 0.88f
         for (i in 0 until 4) {
-            val dx = i * lengthOfLineDemarcatingSectors / 4f
+            val dx = i * (lengthOfLineDemarcatingSectors - characterHeight * 0.4f) / 3.7f
             letterPositions[4 * i] = eastEdge + dx
-            letterPositions[4 * i + 1] = circleCenter.y - characterHeight / 2f
+            letterPositions[4 * i + 1] = circleCenter.y - lateralOffset
             letterPositions[4 * i + 2] = eastEdge + dx
-            letterPositions[4 * i + 3] = circleCenter.y + characterHeight / 2f
+            letterPositions[4 * i + 3] = circleCenter.y + lateralOffset
         }
         path.rewind()
 

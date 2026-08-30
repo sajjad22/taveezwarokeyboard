@@ -43,17 +43,24 @@ fun HomeScreen() = Screen {
         ) {
             AppIcon()
         }
-        Preference(
-            iconId = R.drawable.ic_language,
-            title = stringRes(R.string.settings__layouts__title),
-            onClick = { navController.navigate(Routes.Settings.LAYOUTS) },
-            trailing = {
-                Icon(
-                    Icons.AutoMirrored.Filled.KeyboardArrowRight,
-                    contentDescription = null
-                )
-            }
-        )
+        inc.flide.vim8.lib.compose.Dialog {
+            title = stringRes(R.string.select_preferred_keyboard_layout_dialog_title)
+            index = { inc.flide.vim8.app.availableLayouts.get()?.index ?: 0 }
+            items = { inc.flide.vim8.app.availableLayouts.get()?.displayNames ?: emptyList() }
+            onConfirm { inc.flide.vim8.app.availableLayouts.get()?.selectLayout(it) }
+            Preference(
+                iconId = R.drawable.ic_language,
+                title = stringRes(R.string.settings__layouts__title),
+                summary = stringRes(R.string.settings__layouts__select__summary),
+                onClick = { show() },
+                trailing = {
+                    Icon(
+                        Icons.AutoMirrored.Filled.KeyboardArrowRight,
+                        contentDescription = null
+                    )
+                }
+            )
+        }
 
         Preference(
             iconId = R.drawable.ic_keyboard,
@@ -124,9 +131,9 @@ fun HomeScreen() = Screen {
             }
         )
         Preference(
-            iconId = R.drawable.ic_error_outline,
-            title = stringRes(R.string.about__title),
-            onClick = { navController.navigate(Routes.Settings.ABOUT) },
+            iconId = R.drawable.ic_help,
+            title = stringRes(R.string.tutorial__title),
+            onClick = { navController.navigate(Routes.Settings.TUTORIAL) },
             trailing = {
                 Icon(
                     Icons.AutoMirrored.Filled.KeyboardArrowRight,
@@ -135,9 +142,9 @@ fun HomeScreen() = Screen {
             }
         )
         Preference(
-            iconId = R.drawable.ic_help,
-            title = stringRes(R.string.settings__help__feedback),
-            onClick = { context.launchUrl(Urls.MAIL_TO) },
+            iconId = R.drawable.ic_error_outline,
+            title = stringRes(R.string.about__title),
+            onClick = { navController.navigate(Routes.Settings.ABOUT) },
             trailing = {
                 Icon(
                     Icons.AutoMirrored.Filled.KeyboardArrowRight,

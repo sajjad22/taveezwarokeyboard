@@ -78,26 +78,32 @@ fun RowScope.Sidebar() {
     val inputEventDispatcher = keyboardManager.inputEventDispatcher
     val state by keyboardManager.activeState.collectAsState()
 
+    val imm = context.getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as? android.view.inputmethod.InputMethodManager
+
     Column(modifier = Modifier.weight(1f)) {
         ImageButton(
-            resourceId = R.drawable.ic_emoji,
-            description = stringRes(R.string.open_emoticon_keyboard_button_content_description),
+            resourceId = R.drawable.ic_language,
+            description = stringRes(R.string.settings__layouts__title),
             onClick = {
-                inputEventDispatcher.sendDownUp(
-                    CustomKeycode.SWITCH_TO_EMOTICON_KEYBOARD.toKeyboardAction()
-                )
+                val current = prefs.layout.current.get()
+                val nextLayout = if (current.path.toString().contains("sd")) {
+                    inc.flide.vim8.ime.layout.EmbeddedLayout("en")
+                } else {
+                    inc.flide.vim8.ime.layout.EmbeddedLayout("sd")
+                }
+                prefs.layout.current.set(nextLayout)
             }
         )
 
         ImageButton(
-            resourceId = R.drawable.ic_keyboard_tab,
-            description = stringRes(R.string.open_emoticon_keyboard_button_content_description),
-            onClick = { inputEventDispatcher.sendDownUp(KeyEvent.KEYCODE_TAB.toKeyboardAction()) }
+            resourceId = R.drawable.ic_keyboard,
+            description = stringRes(R.string.select_preferred_emoticon_keyboard_dialog_title),
+            onClick = { imm?.showInputMethodPicker() }
         )
 
         ImageButton(
             resourceId = R.drawable.ic_open_with_black,
-            description = stringRes(R.string.open_emoticon_keyboard_button_content_description),
+            description = stringRes(R.string.open_selection_keypad_button_content_description),
             onClick = {
                 inputEventDispatcher.sendDownUp(
                     CustomKeycode.SWITCH_TO_SELECTION_KEYPAD.toKeyboardAction()
@@ -106,18 +112,8 @@ fun RowScope.Sidebar() {
         )
 
         ImageButton(
-            resourceId = R.drawable.key_icon_settings,
-            description = stringRes(R.string.open_emoticon_keyboard_button_content_description),
-            onClick = {
-                context.launchActivity(MainActivity::class) {
-                    it.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                }
-            }
-        )
-
-        ImageButton(
             resourceId = if (state.isCtrlOn) R.drawable.ic_ctrl_engaged else R.drawable.ic_ctrl,
-            description = stringRes(R.string.open_emoticon_keyboard_button_content_description),
+            description = stringRes(R.string.ctrl_button_content_description),
             onClick = {
                 inputEventDispatcher.sendDownUp(
                     CustomKeycode.CTRL_TOGGLE.toKeyboardAction()
@@ -127,35 +123,13 @@ fun RowScope.Sidebar() {
 
         ImageButton(
             resourceId = if (state.isFnOn) R.drawable.ic_fn_engaged else R.drawable.ic_fn,
-            description = stringRes(R.string.open_emoticon_keyboard_button_content_description),
+            description = stringRes(R.string.settings__gesture__fn_enabled__title),
             onClick = {
                 inputEventDispatcher.sendDownUp(
                     CustomKeycode.FN_TOGGLE.toKeyboardAction()
                 )
             }
         )
-
-        if (state.imeUiMode == ImeUiMode.TEXT) {
-            ImageButton(
-                resourceId = R.drawable.ic_content_paste,
-                description = stringRes(R.string.open_emoticon_keyboard_button_content_description),
-                onClick = {
-                    inputEventDispatcher.sendDownUp(
-                        CustomKeycode.SWITCH_TO_CLIPPAD_KEYBOARD.toKeyboardAction()
-                    )
-                }
-            )
-        } else {
-            ImageButton(
-                resourceId = R.drawable.ic_viii,
-                description = stringRes(R.string.main_keyboard_button_content_description),
-                onClick = {
-                    inputEventDispatcher.sendDownUp(
-                        CustomKeycode.SWITCH_TO_MAIN_KEYPAD.toKeyboardAction()
-                    )
-                }
-            )
-        }
 
         ImageButton(
             resourceId = R.drawable.ic_keyboard_onscreen,
@@ -167,6 +141,16 @@ fun RowScope.Sidebar() {
                     KeyboardLayoutMode.EMBEDDED
                 }
                 prefs.keyboard.layoutMode.mode.set(layoutMode)
+            }
+        )
+
+        ImageButton(
+            resourceId = R.drawable.key_icon_settings,
+            description = stringRes(R.string.open_keyboard_settings_button_content_description),
+            onClick = {
+                context.launchActivity(MainActivity::class) {
+                    it.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                }
             }
         )
     }

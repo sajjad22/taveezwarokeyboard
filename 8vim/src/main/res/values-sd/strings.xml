@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE resources [<!ENTITY appname "SindhiPheethoKeyboard">]>
+<resources>
+    <string name="app__version__label">ورزن (Version)</string>
+    <string name="enable_ime_dialog_title">مهرباني ڪري ڪيبورڊ فعال ڪريو</string>
+    <string name="enable_ime_dialog_content">ڪيبورڊ استعمال ڪرڻ لاءِ پهرين ان کي سسٽم ۾ فعال ڪرڻ ضروري آهي. هيٺ ڏنل بٽڻ دٻائي سيٽنگس مان "{app_name}" کي آن ڪريو.</string>
+    <string name="enable_ime_dialog_neutral_button_text">فعال ڪريو (Enable)</string>
+    <string name="activate_ime_dialog_title">ڪيبورڊ منتخب ڪريو</string>
+    <string name="activate_ime_dialog_content">ڇا توهان هتي {app_name} کي فعال ڪيبورڊ طور سوئچ ڪرڻ چاهيو ٿا؟</string>
+    <string name="activate_ime_dialog_positive_button_text">سوئچ ڪريو (Switch)</string>
+    <string name="activate_ime_dialog_negative_button_text">رد ڪريو (Cancel)</string>
+
+    <string name="keyboard_test_edit_text_hint">هتي ٽائپ ڪري ٽيسٽ ڪريو...</string>
+    <string name="settings__help__feedback">بنيادي سکيا (Tutorial)</string>
+    <string name="tutorial__title">بنيادي سکيا ۽ رهنمائي (Tutorial)</string>
+    <string name="share_app">{app_name} شيئر ڪريو</string>
+    <string name="select_preferred_emoticon_keyboard_dialog_title">ٻيو ڪيبورڊ چونڊيو</string>
+    <string name="select_preferred_keyboard_layout_dialog_title">ڪيبورڊ لئـائوٽ چونڊيو</string>
+    <string name="dialog__yaml__error__title">لئـائوٽ فائل لوڊ نه ٿي سگهي</string>
+    <string name="dialog__error__title">غلطي (Error)</string>
+    <string name="dialog__confirm__label">ٺيڪ آهي (OK)</string>
+    <string name="dialog__save__label">محفوظ ڪريو (Save)</string>
+    <string name="dialog__dismiss__label">رد ڪريو (Cancel)</string>
+
+    <string name="about__title">ڪيبورڊ بابت (About)</string>
+    <string name="about__description">سنڌي ڦيٿو ڪيبورڊ 8Vim تان فورڪ ڪيو ويو آهي (جيڪو اصل ۾ 8Pen ڪانسيپٽ مان متاثر ٿيل هو) ۽ سنڌي ٻوليءَ لاءِ سجاد علي (Sajjad Ali) پاران تيار ۽ ڊزائن ڪيو ويو آهي.</string>
+    <string name="about__third_party_licenses__title">اوپن سورس لائسنس</string>
+    <string name="about__third_party_licenses__summary">هن ايپليڪيشن ۾ شامل لائبريرين جا تفصيل</string>
+    <string name="open_emoticon_keyboard_button_content_description">ايموجي ڪيبورڊ</string>
+    <string name="tab_button_content_description">ٽئب (Tab)</string>
+    <string name="ctrl_button_content_description">ڪنٽرول بٽڻ (Ctrl)</string>
+    <string name="open_selection_keypad_button_content_description">ٽيڪسٽ چونڊ ڪي پيڊ</string>
+    <string name="open_keyboard_settings_button_content_description">ڪيبورڊ سيٽنگس</string>
+    <string name="clipboard_button_content_description">ڪلپ بورڊ</string>
+    <string name="main_keyboard_button_content_description">مکيه ڪيبورڊ</string>
+    <string name="floating_keyboard_button_content_description">فلوٽنگ ڪيبورڊ (Floating)</string>
+    <string name="generic_back_button_content_description">واپس</string>
+    <string name="settings__about__owner__label">ڊزائن ۽ ترقي: سجاد علي (Sajjad Ali)</string>
+    <string name="connect_with_us_label">اسان سان رابطو ڪريو</string>
+    <string name="github_icon_content_description">Github</string>
+    <string name="settings__about__github__label">گٽ هب تي فورڪ ڪريو (GitHub)</string>
+    <string name="matrix_icon_content_description">Matrix</string>
+    <string name="settings__about__matrix__label">ميٽرڪس تي شامل ٿيو</string>
+    <string name="play_store_icon_content_description">Play Store</string>
+    <string name="settings__about__play_store__label">پلي اسٽور تي ريٽنگ ڏيو</string>
+    <string name="twitter_icon_content_description">X (Twitter)</string>
+    <string name="settings__about__twitter__label">ايڪس تي رابطو ڪريو (x.com/makorro)</string>
+    <string name="choose_the_8vim">{app_name} چونڊيو. اسان ڪڏهن به توهان جو ڊيٽا گڏ نٿا ڪريون.</string>
+
+    <string name="vim8__repository_url" translatable="false">https://github.com/8VIM/8VIM</string>
+    <string name="general__no_browser_app_found_for_url">هن لنڪ لاءِ ڪو برائوزر نه مليو: {url}</string>
+    <!-- Setup UI strings -->
+    <string name="setup__title" comment="Title of Setup">ڀلي ڪري آيا!</string>
+    <string name="setup__intro_message" comment="Short intro message welcoming new users">{app_name} استعمال ڪرڻ لاءِ مهرباني! هي گائيڊ توهان کي ڪيبورڊ فعال ڪرڻ ۾ مدد ڪندو.</string>
+    <string name="setup__footer__repository" comment="Repository label for URL">ريپازٽري</string>
+
+    <string name="setup__enable_ime__title">{app_name} کي فعال ڪريو</string>
+    <string name="setup__enable_ime__description">سسٽم سيٽنگس مان {app_name} کي فعال ڪريو.</string>
+    <string name="setup__enable_ime__open_settings_btn">سسٽم سيٽنگس کوليو</string>
+
+    <string name="setup__select_ime__title">{app_name} چونڊيو</string>
+    <string name="setup__select_ime__description">{app_name} فعال ٿي ويو آهي. هاڻي ان کي بنيادي ڪيبورڊ طور سوئچ ڪريو.</string>
+    <string name="setup__select_ime__switch_keyboard_btn">ڪيبورڊ سوئچ ڪريو</string>
+
+    <string name="setup__finish_up__title">مڪمل ٿيو</string>
+    <string name="setup__finish_up__description_p1">{app_name} هاڻي استعمال لاءِ بلڪل تيار آهي.</string>
+    <string name="setup__finish_up__description_p2">جيڪڏهن ڪا تجويز هجي ته بابت واري صفحي تان رابطو ڪري سگهو ٿا.</string>
+    <string name="setup__finish_up__finish_btn">سيٽنگس شروع ڪريو</string>
+
+    <string name="settings__title" comment="Title of Settings">سيٽنگس (Settings)</string>
+
+    <string name="settings__home__title" comment="Title of the Home screen">{app_name} سيٽنگس</string>
+    <string name="settings__home__ime_not_enabled">{app_name} سسٽم ۾ فعال ناهي.\nفعال ڪرڻ لاءِ هتي ڪلڪ ڪريو.</string>
+    <string name="settings__home__ime_not_selected">{app_name} بنيادي ان پٽ طور چونڊيل ناهي.\nچونڊڻ لاءِ هتي ڪلڪ ڪريو.</string>
+
+    <string name="settings__layouts__title" comment="Title of Layout screen">ٻوليون ۽ لئـائوٽس (Layouts)</string>
+    <string name="settings__layouts__select__title">ڪيبورڊ ٻولي چونڊيو</string>
+    <string name="settings__layouts__select__summary">سنڌي (Sindhi ڦيٿو) يا انگريزي لئـائوٽ</string>
+    <string name="settings__layouts__load_custom__title">ڊوائيس مان ڪسٽم فائل لوڊ ڪريو</string>
+    <string name="settings__layouts__load_custom__summary">پنهنجي مرضيءَ جي YAML لئـائوٽ فائل داخل ڪريو</string>
+
+    <string name="settings__clipboard__title" comment="Title of Clipboard screen">ڪلپ بورڊ (Clipboard)</string>
+    <string name="settings__keyboard__title" comment="Title of Keyboard screen">ڪيبورڊ ۽ ڦيٿو (Keyboard)</string>
+
+    <string name="settings__keyboard__select__emoji__keyboard__title">ايموجي ڪيبورڊ</string>
+    <string name="settings__keyboard__select__emoji__keyboard__summary">ايموجي لاءِ سسٽم ڪيبورڊ چونڊيو</string>
+
+    <string name="settings__keyboard__circle__auto_resize_group__title">دائرو (Circle) ۽ ماپ</string>
+    <string name="settings__keyboard__circle__auto_resize__title">دائري جي آٽو ريسائيزنگ</string>
+    <string name="settings__keyboard__circle__auto_resize__summary__on">حرڪت دوران دائرو ننڍو ٿيندو</string>
+    <string name="settings__keyboard__circle__auto_resize__summary__off">دائري جي ماپ مستقل رهندي</string>
+
+    <string name="settings__keyboard__circle__dynamic_centre__title">متحرڪ دائرو (Dynamic Center)</string>
+    <string name="settings__keyboard__circle__dynamic_centre__summary">جتي آڱر لڳندي دائرو اتي منتقل ٿيندو</string>
+
+    <string name="settings__keyboard__circle__dynamic_centre_overlay_enabled__title">متحرڪ دائري جو اولڙو (Overlay) ڏيکاريو</string>
+
+    <string name="settings__keyboard__circle__size__title">مرڪزي دائري جي ماپ (Circle Size)</string>
+    <string name="settings__keyboard__circle__size__summary">پنهنجي پسند آهر دائرو وڏو يا ننڍو ڪريو</string>
+
+    <string name="settings__keyboard__circle__offset_and_height_group__title">ڦيٿي جي پوزيشن ۽ اوچائي</string>
+    <string name="settings__keyboard__circle__x__centre__offset__title">کاٻي/ساڄي طرف سرڪائڻ (X Offset)</string>
+    <string name="settings__keyboard__circle__y__centre__offset__key">prefs_keyboard_circle_centre_y_offset</string>
+    <string name="settings__keyboard__circle__y__centre__offset__title">مٿي/هيٺ طرف سرڪائڻ (Y Offset)</string>
+
+    <string name="settings__keyboard__height__title">ڪيبورڊ جي اوچائي (Height)</string>
+    <string name="settings__keyboard__height__summary">ڪيبورڊ کي اسڪرين مطابق وڏو يا ننڍو ڪريو</string>
+
+    <string name="settings__keyboard__sidebar__group__title">سائيڊ بار (Sidebar)</string>
+    <string name="settings__keyboard__sidebar__is__visible__title">سائيڊ بار ڏيکاريو</string>
+    <string name="settings__keyboard__sidebar__is__visible__summary__on">سائيڊ بار ظاهر آهي</string>
+    <string name="settings__keyboard__sidebar__is__visible__summary__off">سائيڊ بار لڪيل آهي</string>
+
+    <string name="settings__keyboard__sidebar__is__on__left__title">سائيڊ بار کاٻي هٿ تي</string>
+    <string name="settings__keyboard__sidebar__is__on__left__summary__on">سائيڊ بار کاٻي پاسي آهي</string>
+    <string name="settings__keyboard__sidebar__is__on__left__summary__off">سائيڊ بار ساڄي پاسي آهي</string>
+
+    <string name="settings__keyboard__clipboard__enabled__title">ڪلپ بورڊ فعال ڪريو</string>
+    <string name="settings__keyboard__clipboard__enabled__summary__on">ڪلپ بورڊ چالو آهي</string>
+    <string name="settings__keyboard__clipboard__enabled__summary__off">ڪلپ بورڊ بند آهي</string>
+    <string name="settings__keyboard__clipboard__max_history__title">ڪلپ بورڊ جي وڌ ۾ وڌ تاريخ</string>
+
+    <string name="settings__keyboard__display__group__title">ڪيبورڊ جو ڏيک (Display)</string>
+    <string name="settings__keyboard__display__show__sector__icons__title">پاسن جا نشان (Sector Icons)</string>
+    <string name="settings__keyboard__display__show__sector__icons__summary__on">نشان ظاهر آهن</string>
+    <string name="settings__keyboard__display__show__sector__icons__summary__off">نشان لڪيل آهن</string>
+
+    <string name="settings__keyboard__display__show__letters__on__wheel__title">ڦيٿي تي اکر ڏيکاريو</string>
+    <string name="settings__keyboard__display__show__letters__on__wheel__summary__on">اکر ظاهر آهن</string>
+    <string name="settings__keyboard__display__show__letters__on__wheel__summary__off">اکر لڪيل آهن</string>
+
+    <string name="settings__keyboard__trail__is__visible__title">ٽچ ٽريل (Touch Trail)</string>
+    <string name="settings__keyboard__trail__is__visible__summary__on">آڱر گھمائڻ وقت ليڪ نظر ايندي</string>
+    <string name="settings__keyboard__trail__is__visible__summary__off">ٽريل بند آهي</string>
+
+    <!-- Text Replacement Settings -->
+    <string name="settings__text_replacement__title">متن بدلائڻ (Text Replacement)</string>
+    <string name="settings__text_replacement__description">مختصر لفظن کي مڪمل جملن ۾ خودڪار تبديل ڪريو</string>
+    <string name="settings__text_replacement__enabled">متن بدلائڻ چالو ڪريو</string>
+    <string name="settings__text_replacement__add_entry">نئون اضافو ڪريو</string>
+    <string name="settings__text_replacement__edit_entry">تبديل ڪريو</string>
+    <string name="settings__text_replacement__delete_entry">ختم ڪريو</string>
+    <string name="settings__text_replacement__abbreviation_label">مختصر لفظ (Abbreviation)</string>
+    <string name="settings__text_replacement__expansion_label">مڪمل متن (Expansion)</string>
+    <string name="settings__text_replacement__abbreviation_placeholder">مثال: س ع</string>
+    <string name="settings__text_replacement__expansion_placeholder">مثال: السلام عليڪم ورحمة الله</string>
+    <string name="settings__text_replacement__empty_list">ڪابه تبديلي شامل ناهي. شامل ڪرڻ لاءِ + دٻايو.</string>
+    <string name="settings__text_replacement__save">محفوظ ڪريو</string>
+    <string name="settings__text_replacement__cancel">رد ڪريو</string>
+    <string name="settings__text_replacement__error_blank_abbreviation">مختصر لفظ خالي نه هجڻ گھرجي</string>
+    <string name="settings__text_replacement__trigger_hint">اسپيس يا وقفي جو نشان ٽائپ ڪرڻ سان تبديل ٿيندو.</string>
+
+    <string name="settings__keyboard__word_prediction__group__title">لفظن جي پيشنگوئي (Word Prediction)</string>
+    <string name="settings__keyboard__word_prediction__enabled__title">لفظ تجويزون چالو ڪريو</string>
+    <string name="settings__keyboard__word_prediction__enabled__summary__on">مٿئين پٽي تي ايندڙ لفظن جا مشورا ايندا</string>
+    <string name="settings__keyboard__word_prediction__enabled__summary__off">لفظن جا مشورا بند آهن</string>
+
+    <string name="settings__keyboard__haptic__sound__group__title">آواز ۽ وائبريشن (Sound &amp; Haptics)</string>
+    <string name="settings__keyboard__haptic__feedback__enabled__title">وائبريشن (Haptic Feedback)</string>
+    <string name="settings__keyboard__haptic__feedback__enabled__summary__on">وائبريشن چالو آهي</string>
+    <string name="settings__keyboard__haptic__feedback__enabled__summary__off">وائبريشن بند آهي</string>
+
+    <string name="settings__keyboard__haptic__feedback__haptic_sector_cross_enabled__title">پاسو بدلائڻ تي وائبريشن ڪريو</string>
+    <string name="settings__keyboard__haptic__feedback__sound_sector_cross_enabled__title">پاسو بدلائڻ تي آواز ڪريو</string>
+
+    <string name="settings__keyboard__sound__feedback__enabled__title">ٽائپنگ جو آواز</string>
+    <string name="settings__keyboard__sound__feedback__enabled__summary__off">آواز بند آهي</string>
+    <string name="settings__keyboard__sound__feedback__enabled__summary__on">آواز چالو آهي</string>
+    <string name="settings__keyboard__sound__feedback__volume__title">آواز جي شدت (Volume)</string>
+
+    <string name="settings__theme__title" comment="Title of Theme screen">ٿيم ۽ رنگ (Themes)</string>
+    <string name="settings__theme__color__mode__title">ٿيم چونڊيو (Color Theme)</string>
+    <string name="settings__theme__custom__background__color__title">ڪسٽم پس منظر جو رنگ</string>
+    <string name="settings__theme__custom__foreground__color__title">ڪسٽم اکرن جو رنگ</string>
+
+    <string name="settings__theme__trail__is__visible__title">ٽچ ٽريل ڏيکاريو</string>
+    <string name="settings__theme__trail__is__visible__summary__on">ٽريل ظاهر ٿيندي</string>
+    <string name="settings__theme__trail__is__visible__summary__off">ٽريل لڪيل رهندي</string>
+    <string name="settings__theme__trail__use__random__color__title">مختلف رنگن واري ٽريل</string>
+    <string name="settings__theme__trail__use__random__color__summary__on">رنگ پاڻمرادو تبديل ٿيندا</string>
+    <string name="settings__theme__trail__use__random__color__summary__off">هڪ ئي چونڊيل رنگ هوندو</string>
+    <string name="settings__theme__trail__color__title">ٽريل جو رنگ</string>
+
+    <string name="settings__gesture__title" comment="Title of Gesture screen">اشارا ۽ حرڪتون (Gestures)</string>
+    <string name="settings__gesture__cursor__move__by__word__title">ڪرسر جي حرڪت</string>
+    <string name="settings__gesture__cursor__move__by__word__summary__on">لفظ بہ لفظ حرڪت ڪندو</string>
+    <string name="settings__gesture__cursor__move__by__word__summary__off">اکر بہ اکر حرڪت ڪندو</string>
+    <string name="settings__gesture__fn_enabled__title">فنڪشن حرڪتون (Fn Moves)</string>
+    <string name="settings__gesture__fn_enabled__summary">سائيڊ بار يا مٿئين پاسي کان الٽو چڪر گهمائڻ سان آن ٿيندو</string>
+
+    <string name="settings__backup_and_restore__title" comment="Title of Advanced screen">بيڪ اپ ۽ ريسٽور (Backup &amp; Restore)</string>
+    <string name="settings__backup_and_restore__back_up__title" comment="Title of Back up screen">ڊيٽا بيڪ اپ ڪريو</string>
+    <string name="settings__backup_and_restore__back_up__summary">پنهنجي سيٽنگس ۽ ترجيحن جي فائل ٺاهيو</string>
+    <string name="settings__backup_and_restore__back_up__success">بيڪ اپ ڪاميابي سان محفوظ ٿي ويو!</string>
+    <string name="settings__backup_and_restore__back_up__failure">بيڪ اپ ۾ ناڪامي: {error_message}</string>
+    <string name="settings__backup_and_restore__restore__title">ڊيٽا واپس ريسٽور ڪريو</string>
+    <string name="settings__backup_and_restore__restore__summary">بيڪ اپ فائل مان سيٽنگس بحال ڪريو</string>
+    <string name="settings__backup_and_restore__restore__failure">ريسٽور ڪرڻ ۾ ناڪامي: {error_message}</string>
+    <string name="settings__backup_and_restore__restore__different_version">هي بيڪ اپ نئين ورزن مان آهي</string>
+    <string name="settings__backup_and_restore__reset__title">اصل سيٽنگس تي ريسيٽ ڪريو</string>
+    <string name="settings__backup_and_restore_restore__success">سيٽنگس ڪاميابي سان ريسٽور ٿي ويون!</string>
+    <string name="dialog__confirm__title">تصديق ڪريو</string>
+    <string name="resetting_settings__description">سڀ سيٽنگس بنيادي حالت تي واپس اچي وينديون.</string>
+    <string name="settings__backup_and_restore__reset">سيٽنگس ريسيٽ ٿي ويون آهن</string>
+</resources>

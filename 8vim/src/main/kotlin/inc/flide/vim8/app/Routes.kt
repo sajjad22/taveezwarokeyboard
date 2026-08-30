@@ -33,6 +33,7 @@ object Routes {
         const val TEXT_REPLACEMENT = "settings/text-replacement"
         const val ABOUT = "settings/about"
         const val THIRD_PARTY_LICENSES = "settings/about/third-party-licenses"
+        const val TUTORIAL = "settings/tutorial"
     }
 
     @Composable
@@ -54,6 +55,7 @@ object Routes {
             composable(Settings.TEXT_REPLACEMENT) { TextReplacementScreen() }
             composable(Settings.ABOUT) { AboutScreen() }
             composable(Settings.THIRD_PARTY_LICENSES) { ThirdPartyLicencesScreen() }
+            composable(Settings.TUTORIAL) { inc.flide.vim8.app.settings.TutorialScreen() }
         }
     }
 }
