@@ -40,6 +40,86 @@ import kotlinx.coroutines.runBlocking
 private const val FULL_ROTATION_STEPS = 7
 internal val ROTATION_MOVEMENT_SEQUENCES = setOf(
     listOf(
+        FingerPosition.RIGHT,
+        FingerPosition.TOP_RIGHT,
+        FingerPosition.TOP_LEFT,
+        FingerPosition.BOTTOM_LEFT,
+        FingerPosition.BOTTOM_RIGHT,
+        FingerPosition.RIGHT
+    ),
+    listOf(
+        FingerPosition.TOP_RIGHT,
+        FingerPosition.TOP_LEFT,
+        FingerPosition.BOTTOM_LEFT,
+        FingerPosition.BOTTOM_RIGHT,
+        FingerPosition.RIGHT,
+        FingerPosition.TOP_RIGHT
+    ),
+    listOf(
+        FingerPosition.TOP_LEFT,
+        FingerPosition.BOTTOM_LEFT,
+        FingerPosition.BOTTOM_RIGHT,
+        FingerPosition.RIGHT,
+        FingerPosition.TOP_RIGHT,
+        FingerPosition.TOP_LEFT
+    ),
+    listOf(
+        FingerPosition.BOTTOM_LEFT,
+        FingerPosition.BOTTOM_RIGHT,
+        FingerPosition.RIGHT,
+        FingerPosition.TOP_RIGHT,
+        FingerPosition.TOP_LEFT,
+        FingerPosition.BOTTOM_LEFT
+    ),
+    listOf(
+        FingerPosition.BOTTOM_RIGHT,
+        FingerPosition.RIGHT,
+        FingerPosition.TOP_RIGHT,
+        FingerPosition.TOP_LEFT,
+        FingerPosition.BOTTOM_LEFT,
+        FingerPosition.BOTTOM_RIGHT
+    ),
+    listOf(
+        FingerPosition.RIGHT,
+        FingerPosition.BOTTOM_RIGHT,
+        FingerPosition.BOTTOM_LEFT,
+        FingerPosition.TOP_LEFT,
+        FingerPosition.TOP_RIGHT,
+        FingerPosition.RIGHT
+    ),
+    listOf(
+        FingerPosition.BOTTOM_RIGHT,
+        FingerPosition.BOTTOM_LEFT,
+        FingerPosition.TOP_LEFT,
+        FingerPosition.TOP_RIGHT,
+        FingerPosition.RIGHT,
+        FingerPosition.BOTTOM_RIGHT
+    ),
+    listOf(
+        FingerPosition.BOTTOM_LEFT,
+        FingerPosition.TOP_LEFT,
+        FingerPosition.TOP_RIGHT,
+        FingerPosition.RIGHT,
+        FingerPosition.BOTTOM_RIGHT,
+        FingerPosition.BOTTOM_LEFT
+    ),
+    listOf(
+        FingerPosition.TOP_LEFT,
+        FingerPosition.TOP_RIGHT,
+        FingerPosition.RIGHT,
+        FingerPosition.BOTTOM_RIGHT,
+        FingerPosition.BOTTOM_LEFT,
+        FingerPosition.TOP_LEFT
+    ),
+    listOf(
+        FingerPosition.TOP_RIGHT,
+        FingerPosition.RIGHT,
+        FingerPosition.BOTTOM_RIGHT,
+        FingerPosition.BOTTOM_LEFT,
+        FingerPosition.TOP_LEFT,
+        FingerPosition.TOP_RIGHT
+    ),
+    listOf(
         FingerPosition.BOTTOM,
         FingerPosition.LEFT,
         FingerPosition.TOP,
@@ -288,6 +368,7 @@ class KeyboardController(context: Context) : GlideGesture.Listener {
         keyboard.key(modifiedMovementSequence)?.let {
             it.isSelected = true
             currentKey = it
+            keyboardManager.previewChar.value = it.text(activeState.value.isUppercase)
         }
     }
 
@@ -365,6 +446,7 @@ class KeyboardController(context: Context) : GlideGesture.Listener {
     private fun resetKey() {
         currentKey?.isSelected = false
         currentKey = null
+        keyboardManager.previewChar.value = null
     }
 
     private val isFullRotation: Boolean

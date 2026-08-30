@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import inc.flide.vim8.ime.layout.models.yaml.versions.common.LayoutInfo
 
-const val CHARACTER_SET_SIZE = 4 * 4 * 2 // 4 sectors, 2 parts, 4 characters per parts
+const val CHARACTER_SET_SIZE = 5 * 2 * 5 // 5 sectors, 2 parts, 5 characters per part = 50
 
 @optics
 data class KeyboardData(

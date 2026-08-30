@@ -23,6 +23,7 @@ class KeyboardManager(context: Context) : InputKeyEventReceiver {
     private val suggestionsManager by context.suggestionsManager()
     private val textReplacementManager by context.textReplacementManager()
     val activeState = ObservableKeyboardState.new()
+    val previewChar = androidx.compose.runtime.mutableStateOf<String?>(null)
 
     private val repeatableKeyCodes = intArrayOf(
         KeyEvent.KEYCODE_DEL,

@@ -74,7 +74,7 @@ android {
         applicationId = "inc.flide.vi8"
         minSdk = 24
         targetSdk = 35
-        resValue("string", "app_name", "8Vim")
+        resValue("string", "app_name", "SindhiPheethoKeyboard")
         if (prNumber != null) {
             versionCode = (System.currentTimeMillis() / 1000).toInt()
             versionName = "pr-$prNumber+${(versionProps["SHA"] as String)}"
@@ -122,7 +122,7 @@ android {
             isDebuggable = true
             applicationIdSuffix = if (prNumber != null) ".pr$prNumber" else ".debug"
             val name = if (prNumber != null) "PR $prNumber" else "Debug"
-            resValue("string", "app_name", "8Vim $name")
+            resValue("string", "app_name", "SindhiPheethoKeyboard $name")
             enableUnitTestCoverage = true
 //            Activate R8 in debug mode, good to check if any new library added works
 //            isMinifyEnabled = true
@@ -143,7 +143,7 @@ android {
         create("rc") {
             initWith(getByName("release"))
             applicationIdSuffix = ".rc"
-            resValue("string", "app_name", "8Vim RC")
+            resValue("string", "app_name", "SindhiPheethoKeyboard RC")
         }
     }
 

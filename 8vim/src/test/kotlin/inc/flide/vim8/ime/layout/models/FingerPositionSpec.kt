@@ -6,7 +6,7 @@ import io.kotest.matchers.shouldBe
 
 class FingerPositionSpec : FunSpec({
     context("computing movement sequence") {
-        val quadrant = Quadrant(Direction.BOTTOM, Direction.LEFT)
+        val quadrant = Quadrant(Direction.RIGHT, Direction.TOP)
         withData(
             nameFn = { "for the ${it.first} layer at ${it.second} position" },
             Triple(
@@ -14,8 +14,7 @@ class FingerPositionSpec : FunSpec({
                 CharacterPosition.FIRST,
                 listOf(
                     FingerPosition.INSIDE_CIRCLE,
-                    FingerPosition.BOTTOM,
-                    FingerPosition.LEFT,
+                    FingerPosition.RIGHT,
                     FingerPosition.INSIDE_CIRCLE
                 )
             ),
@@ -24,9 +23,8 @@ class FingerPositionSpec : FunSpec({
                 CharacterPosition.SECOND,
                 listOf(
                     FingerPosition.INSIDE_CIRCLE,
-                    FingerPosition.BOTTOM,
-                    FingerPosition.LEFT,
-                    FingerPosition.TOP,
+                    FingerPosition.RIGHT,
+                    FingerPosition.TOP_RIGHT,
                     FingerPosition.INSIDE_CIRCLE
                 )
             ),
@@ -35,10 +33,9 @@ class FingerPositionSpec : FunSpec({
                 CharacterPosition.THIRD,
                 listOf(
                     FingerPosition.INSIDE_CIRCLE,
-                    FingerPosition.BOTTOM,
-                    FingerPosition.LEFT,
-                    FingerPosition.TOP,
                     FingerPosition.RIGHT,
+                    FingerPosition.TOP_RIGHT,
+                    FingerPosition.TOP_LEFT,
                     FingerPosition.INSIDE_CIRCLE
                 )
             ),
@@ -47,81 +44,25 @@ class FingerPositionSpec : FunSpec({
                 CharacterPosition.FOURTH,
                 listOf(
                     FingerPosition.INSIDE_CIRCLE,
-                    FingerPosition.BOTTOM,
-                    FingerPosition.LEFT,
-                    FingerPosition.TOP,
                     FingerPosition.RIGHT,
-                    FingerPosition.BOTTOM,
+                    FingerPosition.TOP_RIGHT,
+                    FingerPosition.TOP_LEFT,
+                    FingerPosition.BOTTOM_LEFT,
                     FingerPosition.INSIDE_CIRCLE
                 )
             ),
             Triple(
-                LayerLevel.SECOND,
-                CharacterPosition.FIRST,
+                LayerLevel.FIRST,
+                CharacterPosition.FIFTH,
                 listOf(
-                    FingerPosition.BOTTOM,
                     FingerPosition.INSIDE_CIRCLE,
-                    FingerPosition.BOTTOM,
-                    FingerPosition.INSIDE_CIRCLE,
-                    FingerPosition.BOTTOM,
-                    FingerPosition.LEFT,
-                    FingerPosition.INSIDE_CIRCLE
-                )
-            ),
-            Triple(
-                LayerLevel.THIRD,
-                CharacterPosition.FIRST,
-                listOf(
-                    FingerPosition.BOTTOM,
-                    FingerPosition.INSIDE_CIRCLE,
-                    FingerPosition.BOTTOM,
-                    FingerPosition.LEFT,
-                    FingerPosition.INSIDE_CIRCLE,
-                    FingerPosition.BOTTOM,
-                    FingerPosition.LEFT,
-                    FingerPosition.INSIDE_CIRCLE
-                )
-
-            ),
-            Triple(
-                LayerLevel.FOURTH,
-                CharacterPosition.FIRST,
-                listOf(
-                    FingerPosition.BOTTOM, FingerPosition.INSIDE_CIRCLE,
-                    FingerPosition.BOTTOM, FingerPosition.LEFT, FingerPosition.TOP,
-                    FingerPosition.INSIDE_CIRCLE,
-                    FingerPosition.BOTTOM, FingerPosition.LEFT, FingerPosition.INSIDE_CIRCLE
-                )
-
-            ),
-            Triple(
-                LayerLevel.FIFTH,
-                CharacterPosition.FIRST,
-                listOf(
-                    FingerPosition.BOTTOM, FingerPosition.INSIDE_CIRCLE,
-                    FingerPosition.BOTTOM, FingerPosition.LEFT, FingerPosition.TOP,
-                    FingerPosition.RIGHT, FingerPosition.INSIDE_CIRCLE,
-                    FingerPosition.BOTTOM, FingerPosition.LEFT, FingerPosition.INSIDE_CIRCLE
-                )
-
-            ),
-            Triple(
-                LayerLevel.SIXTH,
-                CharacterPosition.FIRST,
-                listOf(
-                    FingerPosition.BOTTOM,
-                    FingerPosition.INSIDE_CIRCLE,
-                    FingerPosition.BOTTOM,
-                    FingerPosition.LEFT,
-                    FingerPosition.TOP,
                     FingerPosition.RIGHT,
-                    FingerPosition.BOTTOM,
-                    FingerPosition.INSIDE_CIRCLE,
-                    FingerPosition.BOTTOM,
-                    FingerPosition.LEFT,
+                    FingerPosition.TOP_RIGHT,
+                    FingerPosition.TOP_LEFT,
+                    FingerPosition.BOTTOM_LEFT,
+                    FingerPosition.BOTTOM_RIGHT,
                     FingerPosition.INSIDE_CIRCLE
                 )
-
             )
         ) { (layer, position, result) ->
             FingerPosition.computeMovementSequence(layer, quadrant, position) shouldBe result

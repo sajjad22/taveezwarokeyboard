@@ -6,7 +6,10 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SuggestionChip
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -17,6 +20,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.TextUnit
@@ -24,52 +28,76 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import inc.flide.vim8.Vim8ImeService
 import inc.flide.vim8.ime.nlp.SuggestionsManager
+import inc.flide.vim8.keyboardManager
 import inc.flide.vim8.suggestionsManager
 
 /** Fixed height of the bar — keyboard layout size never changes. */
 private val BAR_HEIGHT = 40.dp
 
 /**
- * A horizontal bar that always occupies [BAR_HEIGHT] and shows exactly
- * [SuggestionsManager.MAX_SUGGESTIONS] equally-wide suggestion chips.
- * Chips without a suggestion are rendered as disabled placeholders, so the
- * layout never shifts when suggestions appear or disappear.
+ * A horizontal bar that always occupies [BAR_HEIGHT] and shows either:
+ * 1) A live letter preview pop badge while actively swiping/hovering a key, or
+ * 2) The suggestion chips when not gliding.
  */
 @Composable
 fun SuggestionsBar() {
     val context = LocalContext.current
+    val keyboardManager by context.keyboardManager()
     val suggestionsManager by context.suggestionsManager()
     val suggestions by suggestionsManager.suggestions.collectAsState()
+    val previewChar = keyboardManager.previewChar.value
 
-    // Rank the suggestions visually: centre = most plausible (rank 1),
-    // right = second most plausible (rank 2), left = third (rank 3).
-    // The repository returns words in descending-frequency order, so:
-    //   suggestions[0] → centre, suggestions[1] → right, suggestions[2] → left
-    val slots = listOf(
-        // left — third most plausible
-        suggestions.getOrNull(2),
-        // centre — most plausible (best)
-        suggestions.getOrNull(0),
-        // right — second most plausible
-        suggestions.getOrNull(1)
-    )
+    if (!previewChar.isNullOrEmpty()) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(BAR_HEIGHT)
+                .padding(horizontal = 4.dp, vertical = 2.dp),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Surface(
+                shape = RoundedCornerShape(8.dp),
+                color = MaterialTheme.colorScheme.primaryContainer,
+                tonalElevation = 6.dp
+            ) {
+                Text(
+                    text = previewChar,
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.padding(horizontal = 32.dp, vertical = 2.dp)
+                )
+            }
+        }
+    } else {
+        val slots = listOf(
+            // left — third most plausible
+            suggestions.getOrNull(2),
+            // centre — most plausible (best)
+            suggestions.getOrNull(0),
+            // right — second most plausible
+            suggestions.getOrNull(1)
+        )
 
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(BAR_HEIGHT)
-            .padding(horizontal = 4.dp, vertical = 3.dp),
-        horizontalArrangement = Arrangement.spacedBy(4.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        slots.forEach { word ->
-            SuggestionSlot(
-                modifier = Modifier
-                    .weight(1f)
-                    .fillMaxHeight(),
-                word = word,
-                onSelect = { chosen -> commitSuggestion(suggestionsManager, chosen) }
-            )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(BAR_HEIGHT)
+                .padding(horizontal = 4.dp, vertical = 3.dp),
+            horizontalArrangement = Arrangement.spacedBy(4.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            slots.forEach { word ->
+                SuggestionSlot(
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxHeight(),
+                    word = word,
+                    onSelect = { chosen -> commitSuggestion(suggestionsManager, chosen) }
+                )
+            }
         }
     }
 }

@@ -89,42 +89,20 @@
       "type": "object",
       "properties": {
         "sectors": {
-          "description": "sectors accept left/right and top/bottom properties\nEach accepts receptively a sub parts top/bottom and left/right properties",
+          "description": "sectors accept direction properties with parts",
           "type": "object",
           "patternProperties": {
-            "^(?i)(left|right)$": {
+            "^(?i)(left|right|top|bottom|top_right|top_left|bottom_left|bottom_right|sector_1|sector_2|sector_3|sector_4|sector_5)$": {
               "type": "object",
               "properties": {
                 "parts": {
                   "type": "object",
                   "patternProperties": {
-                    "^(?i)(top|bottom)$": {
+                    "^(?i)(top|bottom|left|right)$": {
                       "$ref": "#/$defs/actionList"
                     }
                   },
-                  "additionalProperties": false,
-                  "message": {
-                    "additionalProperties": "Only top/bottom parts are valid for left/right sectors"
-                  }
-                }
-              },
-              "required": ["parts"],
-              "additionalProperties": false
-            },
-            "^(?i)(top|bottom)$": {
-              "type": "object",
-              "properties": {
-                "parts": {
-                  "type": "object",
-                  "patternProperties": {
-                    "^(?i)(left|right)$": {
-                      "$ref": "#/$defs/actionList"
-                    }
-                  },
-                  "additionalProperties": false,
-                  "message": {
-                    "additionalProperties": "Only left/right parts are valid for top/bottom sectors"
-                  }
+                  "additionalProperties": false
                 }
               },
               "required": ["parts"],
@@ -141,9 +119,9 @@
       "items": {
         "$ref": "#/$defs/action"
       },
-      "maxItems": 4,
+      "maxItems": 5,
       "message": {
-        "maxItems": "There is only up to 4 actions per sectors/parts"
+        "maxItems": "There is only up to 5 actions per sectors/parts"
       }
     },
     "info": {
