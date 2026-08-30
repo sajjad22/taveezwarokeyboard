@@ -137,13 +137,13 @@ class Keyboard(private val context: Context) {
         val offsetX = xCentreOffset * XPAD_CIRCLE_OFFSET_FACTOR
         val offsetY = yCentreOffset * XPAD_CIRCLE_OFFSET_FACTOR
 
-        val bottomMargin = characterHeight * 0.9f
+        val bottomMargin = characterHeight * 1.6f
         val usableHeight = keyboardHeight - bottomMargin
 
         val smallDim = min(
             keyboardWidth / 2 - abs(offsetX),
             usableHeight / 2 - abs(offsetY)
-        ) * 0.92f
+        ) * 0.88f
         lengthOfLineDemarcatingSectors = hypot(smallDim, smallDim) - radius - characterHeight
 
         val x = if (isTabletLandscape) {

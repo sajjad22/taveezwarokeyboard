@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import inc.flide.vim8.R
@@ -36,30 +37,28 @@ fun AboutScreen() = Screen {
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 24.dp, bottom = 32.dp)
+                .padding(top = 24.dp, bottom = 24.dp)
         ) {
             AppIcon()
             Text(
                 text = stringRes(R.string.app_name),
-                fontSize = 18.sp,
+                fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(top = 10.dp)
+                modifier = Modifier.padding(top = 12.dp)
             )
         }
         Column(
             verticalArrangement = Arrangement.Top,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 24.dp, vertical = 16.dp)
+                .padding(horizontal = 24.dp, vertical = 12.dp)
         ) {
             Text(
-                text = stringRes(R.string.about__description),
-                fontSize = 15.sp
-            )
-            Text(
-                text = stringRes(R.string.settings__about__owner__label),
+                text = "هيءُ ڪيبورڊ 8Vim ڪيبورڊ مان متاثر ٿي فورڪ ڪيو ويو آهي، جيڪو اصل ۾ 8Pen جي تصور تي ٻڌل هو ۽ سنڌي ٻوليءَ لاءِ ترتيب ڏنو ويو آهي.",
                 fontSize = 15.sp,
-                modifier = Modifier.padding(top = 10.dp)
+                textAlign = TextAlign.Right,
+                lineHeight = 24.sp,
+                modifier = Modifier.fillMaxWidth()
             )
         }
 
@@ -70,27 +69,9 @@ fun AboutScreen() = Screen {
         )
         HorizontalDivider()
         Preference(
-            iconId = R.drawable.github_vd_vector,
-            title = stringRes(R.string.settings__about__github__label),
-            onClick = { context.launchUrl(Urls.GITHUB) }
-        )
-        HorizontalDivider()
-        Preference(
-            iconId = R.drawable.matrix_vd_vector,
-            title = stringRes(R.string.settings__about__matrix__label),
-            onClick = { context.launchUrl(Urls.MATRIX) }
-        )
-        HorizontalDivider()
-        Preference(
             iconId = R.drawable.twitter_vd_vector,
             title = stringRes(R.string.settings__about__twitter__label),
             onClick = { context.launchUrl(Urls.TWITTER) }
-        )
-        HorizontalDivider()
-        Preference(
-            iconId = R.drawable.playstore_vd_vector,
-            title = stringRes(R.string.settings__about__play_store__label),
-            onClick = { context.launchUrl(Urls.PLAY_STORE) }
         )
         HorizontalDivider()
         Preference(

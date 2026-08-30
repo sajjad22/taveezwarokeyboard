@@ -60,7 +60,7 @@ class AppPrefs : PreferenceModel(9) {
 
         val current = custom(
             key = "prefs_layout_current",
-            default = EmbeddedLayout("en"),
+            default = EmbeddedLayout("sd"),
             serde = LayoutSerDe
         )
 

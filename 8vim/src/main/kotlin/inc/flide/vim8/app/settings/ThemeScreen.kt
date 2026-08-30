@@ -14,16 +14,16 @@ import inc.flide.vim8.lib.compose.stringRes
 import inc.flide.vim8.theme.ThemeMode
 
 private fun themeTitle(mode: ThemeMode): String = when (mode) {
-    ThemeMode.SYSTEM -> "System Default (سسٽم ڊفالٽ)"
-    ThemeMode.LIGHT -> "Light (روشن اڇو)"
-    ThemeMode.DARK -> "Dark (گهاٽو ڪارو)"
-    ThemeMode.SINDHI_AJRAK -> "Sindhi Ajrak (سنڌي اجرڪ - ڳاڙهو ۽ نيرو)"
-    ThemeMode.EMERALD_NIGHT -> "Emerald Night (زمرد سائو)"
-    ThemeMode.ROYAL_INDIGO -> "Royal Indigo (شاهي نيرو ۽ سونھري)"
-    ThemeMode.MIDNIGHT_OLED -> "Midnight AMOLED (نيم رات ڪارو ۽ فيروزي)"
-    ThemeMode.SUNSET_DESERT -> "Sunset Sand (ٿر جو وارياسو)"
-    ThemeMode.CYBERPUNK_NEON -> "Cyberpunk Neon (نيون روشني)"
-    ThemeMode.CUSTOM -> "Custom Colors (پنهنجي مرضي جا رنگ)"
+    ThemeMode.SYSTEM -> "سسٽم ڊفالٽ"
+    ThemeMode.LIGHT -> "روشن اڇو"
+    ThemeMode.DARK -> "گهاٽو ڪارو"
+    ThemeMode.SINDHI_AJRAK -> "سنڌي اجرڪ"
+    ThemeMode.EMERALD_NIGHT -> "زمرد سائو"
+    ThemeMode.ROYAL_INDIGO -> "شاهي نيرو"
+    ThemeMode.MIDNIGHT_OLED -> "نيم رات ڪارو"
+    ThemeMode.SUNSET_DESERT -> "ٿر جو وارياسو"
+    ThemeMode.CYBERPUNK_NEON -> "نيون روشني"
+    ThemeMode.CUSTOM -> "پنهنجي مرضي جا رنگ"
 }
 
 private val modes = ThemeMode.entries.map { themeTitle(it) }

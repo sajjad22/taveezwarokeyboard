@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
 internal const val WF_DB_NAME = "word_frequency.db"
-internal const val WF_DB_VERSION = 1
+internal const val WF_DB_VERSION = 2
 internal const val WF_TABLE = "words"
 internal const val WF_COL_WORD = "word"
 internal const val WF_COL_FREQ = "frequency"

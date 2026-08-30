@@ -70,7 +70,7 @@ class WordFrequencyRepository(private val context: Context) {
      */
     fun recordWord(word: String) {
         val lower = word.lowercase().trim()
-        if (lower.isBlank() || lower.length < 2) return
+        if (lower.isBlank()) return
 
         val wdb = db.writableDatabase
         val cv = ContentValues().apply {

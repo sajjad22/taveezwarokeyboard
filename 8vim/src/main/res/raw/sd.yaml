@@ -1,6 +1,6 @@
 version: "2"
 info:
-  name: "سنڌي (Sindhi ڦيٿو)"
+  name: "سنڌي"
   rtl: true
 layers:
   default:

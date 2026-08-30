@@ -132,13 +132,13 @@ class KeyboardSpec : FunSpec() {
             withData(
                 nameFn = { "${it.first} ${it.second}" },
                 LayoutParam(isTabletLandscape = false, isSidebarOnLeft = false)
-                    to Offset(5f, 9.55f),
+                    to Offset(5f, 9.2f),
                 LayoutParam(
                     isTabletLandscape = true,
                     isSidebarOnLeft = false
-                ) to Offset(6.8f, 9.55f),
+                ) to Offset(7.1f, 9.2f),
                 LayoutParam(isTabletLandscape = true, isSidebarOnLeft = true)
-                    to Offset(3.2f, 9.55f)
+                    to Offset(2.9f, 9.2f)
             ) { (params, result) ->
                 val keyboard = Keyboard(context)
                 config.orientation =

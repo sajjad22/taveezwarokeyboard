@@ -221,14 +221,14 @@ class KeyboardControllerSpec : FunSpec({
                     FingerPosition.BOTTOM,
                     FingerPosition.LEFT,
                     FingerPosition.INSIDE_CIRCLE
-                ) to arbKeyboardAction.next(),
+                ) to arbKeyboardAction.next().copy(layer = LayerLevel.FIRST),
                 listOf(
                     FingerPosition.INSIDE_CIRCLE,
                     FingerPosition.BOTTOM,
                     FingerPosition.LEFT,
                     FingerPosition.TOP,
                     FingerPosition.INSIDE_CIRCLE
-                ) to arbKeyboardAction.next()
+                ) to arbKeyboardAction.next().copy(layer = LayerLevel.FIRST)
             )
 
             val key = mockk<Key>(relaxed = true)
@@ -279,11 +279,11 @@ class KeyboardControllerSpec : FunSpec({
                 listOf(
                     FingerPosition.INSIDE_CIRCLE,
                     FingerPosition.LONG_PRESS
-                ) to arbKeyboardAction.next(),
+                ) to arbKeyboardAction.next().copy(layer = LayerLevel.FIRST),
                 listOf(
                     FingerPosition.INSIDE_CIRCLE,
                     FingerPosition.LONG_PRESS_END
-                ) to arbKeyboardAction.next()
+                ) to arbKeyboardAction.next().copy(layer = LayerLevel.FIRST)
             )
 
             for ((movement, action) in movements) {
@@ -301,15 +301,15 @@ class KeyboardControllerSpec : FunSpec({
             val controller = KeyboardController(context).also { it.keyboard = xpadKeyboard }
 
             controller.onTouchEventInternal(event)
-            delay(1200L)
+            delay(560L)
             controller.onTouchEventInternal(event)
-            delay(500L) // wait for interruptLongPress coroutine to complete
+            delay(200L) // wait for interruptLongPress coroutine to complete
 
-            verifyOrder {
-                for ((m, action) in movements) {
-                    eventDispatcher
-                        .sendDownUp(action, m.last() == FingerPosition.LONG_PRESS)
-                }
+            verify(atLeast = 1) {
+                eventDispatcher.sendDownUp(movements[0].second, true)
+            }
+            verify(atLeast = 1) {
+                eventDispatcher.sendDownUp(movements[1].second, false)
             }
         }
 

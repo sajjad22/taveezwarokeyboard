@@ -74,7 +74,7 @@ android {
         applicationId = "inc.flide.vi8"
         minSdk = 24
         targetSdk = 35
-        resValue("string", "app_name", "SindhiPheethoKeyboard")
+        resValue("string", "app_name", "سنڌي ڦيٿو ڪيبورڊ")
         if (prNumber != null) {
             versionCode = (System.currentTimeMillis() / 1000).toInt()
             versionName = "pr-$prNumber+${(versionProps["SHA"] as String)}"
