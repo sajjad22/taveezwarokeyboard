@@ -145,7 +145,7 @@ class YamlParser : LayoutParser {
         characterSets: Array<KeyboardAction?>
     ): Map<MovementSequence, KeyboardAction> {
         return actions
-            .take(5)
+            .take(4)
             .withIndex()
             .filterNot { it.value.isEmpty() }
             .fold(emptyMap()) { acc, (i, action) ->

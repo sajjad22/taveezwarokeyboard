@@ -1,43 +1,52 @@
 # SindhiPheethoKeyboard (سنڌي ڦيٿو ڪيبورڊ) - Development & Setup Log
 
-This document records the full history of the project, user requests, agent recommendations, environment setup details (what was installed on your PC, where, and why), design decisions for the 5-axis Sindhi Pheetho keyboard layout, live gesture preview popup, and build instructions.
+This document records the full history of the project, user requests, agent recommendations, environment setup details (what was installed on your PC, where, and why), design decisions for the 4-axis Sindhi Pheetho keyboard layout, letter frequency ranking, faded Shift keys, colored axis, custom app icon, and build instructions.
 
 ---
 
 ## 1. Project Overview & Request History
 
-### User Request 1 (Initial):
+### User Request 1 (Initial Setup):
 - User requested a **Sindhi (سنڌي)** version of the 8Vim gesture keyboard.
 - Set up Android development tools on this laptop from scratch in user space.
 - Fork 8Vim and generate the installable Android APK.
 
-### User Request 2 (5-Axis Wheel + Frequency Ranking + Live Letter Pop + App Renaming):
-- **Only 2 layouts**: English and Sindhi (remove all other 34 default languages).
-- **5-Axis Engine (50 keys on 1 single layer)**:
-  - 5 axes $\times$ 2 spokes per axis = 10 spokes.
-  - 5 letters per spoke (Levels 1 to 5) = exactly **50 direct single-layer letter keys**.
-  - `جه` and `گه` managed as `ج+ھ` and `گ+ھ`, leaving exactly 50 single letters in Sindhi.
-- **Letter Frequency Mapping**:
-  - Letters placed on the wheel based on frequency (`letter_frequency_new_only letters.txt`).
-  - Most frequent letters (ي, ا, ن, و, ر, ھ, م, ج, س, ل) are on **Level 1 (nearest to the center circle)** for instant 1-step swipe speed.
-- **Shift & Extra Layer**:
-  - Diacritics / Airabs / حرڪتون: زبر (`َ`), زير (`ِ`), پيش (`ُ`), تشديد (`ّ`), جزم/سڪون (`ْ`), تنوين (`ً ٍ ٌ`), کڙي زبر (`ٰ`), کڙي زير (`ٖ`), مد.
-  - Sacred phrases / words: `اللّٰه`, `محمّد`, `ﷺ`, `۽` (Sindhi "and" ligature).
-  - Numerals: Sindhi numbers (`۰-۹`) and English numbers (`0-9`).
+### User Request 2 (Layout Customization & Features):
+- **Only 2 clean layouts**: English and Sindhi.
+- **Clean 4-Axis Architecture (8 Spokes / 4 Levels = 32 Base + 32 Shift Slots)**:
+  - 4 clean quadrants ($90^\circ$ Cartesian layout).
+  - Perfectly stable circle resizing and letter positioning around the Xpad axes.
+- **Letter Frequency Mapping (from `letter_frequency_new_only letters.txt`)**:
+  - **Level 1 (Closest to circle, 8 spokes)**: Top 8 most frequent letters (`ي`, `ا`, `ن`, `و`, `ر`, `ھ`, `م`, `ج` = **61.6%** of all Sindhi text!).
+  - **Level 2 (Ring 2, 8 spokes)**: Next 8 frequent letters (`س`, `ل`, `ت`, `ڪ`, `د`, `ب`, `پ`, `ئ` = **23.3%**).
+  - **Level 3 (Ring 3, 8 spokes)**: Next 8 frequent letters (`ک`, `ڻ`, `ع`, `ٿ`, `ش`, `ڏ`, `ق`, `ح` = **7.8%**).
+  - **Level 4 (Outermost ring, 8 spokes)**: Next 8 frequent letters (`ٽ`, `ف`, `چ`, `ڙ`, `گ`, `خ`, `ز`, `ص` = **4.8%**).
+  - **Direct Base Layer Coverage: 97.5% of all Sindhi typing without Shift!**
+- **Shift Layer (Low Frequency Letters + Airabs + Sacred Words)**:
+  - Low-frequency letters: `ڌ`, `ڳ`, `ٻ`, `ط`, `ڊ`, `ٺ`, `ڀ`, `ڇ`, `ض`, `ظ`, `ڃ`, `غ`, `ڄ`, `ذ`, `ث`, `ڍ`, `ڦ`, `ڱ` (all 18 remaining letters!).
+  - Diacritics / Airabs / حرڪتون: زبر (`َ`), زير (`ِ`), پيش (`ُ`), تشديد (`ّ`), جزم/سڪون (`ْ`), تنوين (`ً ٍ ٌ`), کڙي زبر (`ٰ`), کڙي زير (`ٖ`).
+  - Sacred phrases & ligatures: `اللّٰه`, `محمّد`, `ﷺ`, `۽`, `آ`, `ء`.
+  - Numerals: Sindhi numbers (`۰-۹`) and English numbers (`0-9`) on the numeric extra layer.
+- **Faded Shift Key Letters on Wheel**:
+  - Each key position displays its primary letter boldly AND displays its Shift letter with a subtle, faded opacity right next to it so you can always see what Shift types without memorization!
+- **Colored Axis Lines**:
+  - The 4 diagonal Xpad axis lines and circle feature a distinct primary accent color.
 - **Live Letter Pop / Preview**:
-  - When gliding/swiping across sectors, the candidate letter pops up prominently on the bar above the keyboard in real-time before releasing.
-- **New App Name**:
+  - When gliding over keys, the candidate letter pops up prominently on the bar above the keyboard in real time.
+- **Custom App Icon**:
+  - Modern vector icon depicting a glowing **Pheetho (Wheel) with keyboard keycaps and Sindhi center hub**.
+- **App Name**:
   - **SindhiPheethoKeyboard** (سنڌي ڦيٿو ڪيبورڊ).
 
 ---
 
 ## 2. Tools & Components Installed on Your PC
 
-All tools are installed in user-space inside `/home/sajjad/tools` (no root/sudo permissions needed):
+All tools are installed in user space in `/home/sajjad/tools` (no root/sudo permissions needed):
 
 | Component | Location | Version | Description / Purpose |
 |---|---|---|---|
-| **Git Repository** | `/home/sajjad/sindhivim` | v0.19.x (5-axis fork) | 8Vim codebase transformed into the 5-axis SindhiPheethoKeyboard. |
+| **Git Repository** | `/home/sajjad/sindhivim` | v0.19.x (Sindhi Pheetho fork) | 8Vim codebase transformed into SindhiPheethoKeyboard. |
 | **OpenJDK 17 (Temurin)** | `/home/sajjad/tools/jdk-17` | `17.0.20.1+1` | Java 17 Development Kit required by Gradle & Android Gradle Plugin. |
 | **Android SDK Command-Line Tools** | `/home/sajjad/tools/android-sdk/cmdline-tools/latest` | `12.0` | `sdkmanager` used to download Android build tools and platform SDKs. |
 | **Android SDK Platforms** | `/home/sajjad/tools/android-sdk/platforms/android-36`, `android-35` | API 35 & 36 | Android API target libraries. |
@@ -47,55 +56,35 @@ All tools are installed in user-space inside `/home/sajjad/tools` (no root/sudo 
 
 ---
 
-## 3. 5-Axis (50-Key) Frequency Layout Specification
+## 3. 4-Axis Frequency Layout Specification (`sd.yaml`)
 
-### A. Sector Angles & Geometry
-- **Sector 0 (`right`)**: $0^\circ$ (East)
-- **Sector 1 (`top_right`)**: $72^\circ$ (North-East)
-- **Sector 2 (`top_left`)**: $144^\circ$ (North-West)
-- **Sector 3 (`bottom_left`)**: $216^\circ$ (South-West)
-- **Sector 4 (`bottom_right`)**: $288^\circ$ (South-East)
-- Dividing radial lines at: $36^\circ, 108^\circ, 180^\circ, 252^\circ, 324^\circ$.
+Each spoke contains 4 levels (Level 1 = closest to circle, Level 4 = outermost):
 
-### B. Sindhi 50-Key Single Layer Layout (`sd.yaml`)
-
-Each spoke contains 5 levels (Level 1 = closest to circle, Level 5 = outermost):
-
-| Sector | Spoke | Level 1 (Rank 1-10) | Level 2 (Rank 11-20) | Level 3 (Rank 21-30) | Level 4 (Rank 31-40) | Level 5 (Rank 41-50) |
-|---|---|---|---|---|---|---|
-| **Right ($0^\circ$)** | Top | **ي** (Shift: َ) | **ت** (Shift: ٽ) | **ش** (Shift: ِ) | **ز** (Shift: ُ) | **ض** (Shift: ّ) |
-| **Right ($0^\circ$)** | Bottom | **ا** (Shift: آ) | **ڪ** (Shift: ک) | **ڏ** (Shift: ْ) | **ص** (Shift: ً) | **ظ** (Shift: ٍ) |
-| **Top-Right ($72^\circ$)** | Top | **ن** (Shift: ڻ) | **د** (Shift: ڌ) | **ق** (Shift: ء) | **ڌ** (Shift: ٰ) | **ڃ** (Shift: ٌ) |
-| **Top-Right ($72^\circ$)** | Bottom | **و** (Shift: ؤ) | **ب** (Shift: ٻ) | **ح** (Shift: خ) | **ڳ** (Shift: ڱ) | **غ** (Shift: ـ) |
-| **Top-Left ($144^\circ$)** | Top | **ر** (Shift: ڙ) | **پ** (Shift: ڀ) | **ٽ** (Shift: ٺ) | **ٻ** (Shift: ؟) | **ڄ** (Shift: ،) |
-| **Top-Left ($144^\circ$)** | Bottom | **ھ** (Shift: ه) | **ئ** (Shift: ى) | **ف** (Shift: ڦ) | **ط** (Shift: ؛) | **ذ** (Shift: ژ) |
-| **Bottom-Left ($216^\circ$)** | Top | **م** (Shift: محمّد) | **ک** (Shift: ڪ) | **چ** (Shift: ڇ) | **ڊ** (Shift: ڍ) | **ث** (Shift: !) |
-| **Bottom-Left ($216^\circ$)** | Bottom | **ج** (Shift: ڄ) | **ڻ** (Shift: ن) | **ڙ** (Shift: ر) | **ٺ** (Shift: .) | **ڍ** (Shift: -) |
-| **Bottom-Right ($288^\circ$)** | Top | **س** (Shift: ش) | **ع** (Shift: غ) | **گ** (Shift: ڳ) | **ڀ** (Shift: ۽) | **ڦ** (Shift: «) |
-| **Bottom-Right ($288^\circ$)** | Bottom | **ل** (Shift: اللّٰه) | **ٿ** (Shift: ٺ) | **خ** (Shift: ح) | **ڇ** (Shift: ﷺ) | **ڱ** (Shift: ») |
+| Quadrant | Spoke | Level 1 (Rank 1-8) | Level 2 (Rank 9-16) | Level 3 (Rank 17-24) | Level 4 (Rank 25-32) |
+|---|---|---|---|---|---|
+| **Right ($0^\circ$)** | Top | **ي** (Shift: `ڌ`) | **س** (Shift: `ض`) | **ک** (Shift: `َ`) | **ٽ** (Shift: `ً`) |
+| **Right ($0^\circ$)** | Bottom | **ا** (Shift: `ڳ`) | **ل** (Shift: `ظ`) | **ڻ** (Shift: `ِ`) | **ف** (Shift: `ٍ`) |
+| **Top ($90^\circ$)** | Right | **ن** (Shift: `ٻ`) | **ت** (Shift: `ڃ`) | **ع** (Shift: `ُ`) | **چ** (Shift: `ٌ`) |
+| **Top ($90^\circ$)** | Left | **و** (Shift: `ط`) | **ڪ** (Shift: `غ`) | **ٿ** (Shift: `ّ`) | **ڙ** (Shift: `ْ`) |
+| **Left ($180^\circ$)** | Top | **ر** (Shift: `ڊ`) | **د** (Shift: `ڄ`) | **ش** (Shift: `ٰ`) | **گ** (Shift: `ڱ`) |
+| **Left ($180^\circ$)** | Bottom | **ھ** (Shift: `ٺ`) | **ب** (Shift: `ذ`) | **ڏ** (Shift: `آ`) | **خ** (Shift: `ء`) |
+| **Bottom ($270^\circ$)** | Left | **م** (Shift: `ڀ`) | **پ** (Shift: `ڦ`) | **ق** (Shift: `اللّٰه`) | **ز** (Shift: `محمّد`) |
+| **Bottom ($270^\circ$)** | Right | **ج** (Shift: `ڇ`) | **ئ** (Shift: `ڍ`) | **ح** (Shift: `ﷺ`) | **ص** (Shift: `۽`) |
 
 ---
 
-## 4. Live Letter Pop / Preview Feature
+## 4. How to Rebuild and Install
 
-- As you glide your finger across the sectors on the wheel, `KeyboardController` detects the candidate letter and updates `keyboardManager.previewChar`.
-- The top suggestion bar ([`SuggestionsBar.kt`](file:///home/sajjad/sindhivim/8vim/src/main/kotlin/inc/flide/vim8/ime/keyboard/view/SuggestionsBar.kt)) displays a prominent, centered popup badge with the hovered letter in real-time.
-- When you release your finger, the character is typed and the bar smoothly returns to showing regular text/word suggestions.
-
----
-
-## 5. APK Build & Installation
-
-### Rebuilding Anytime:
+### Rebuilding:
 ```bash
 ./build-apk.sh
 ```
 
-### Ready APK Location:
+### Ready APK:
 👉 **[`/home/sajjad/sindhivim/SindhiPheethoKeyboard-debug.apk`](file:///home/sajjad/sindhivim/SindhiPheethoKeyboard-debug.apk)** *(Size: 22 MB)*
 
-### Quick Transfer to Phone:
+### Transfer to Phone:
 ```bash
 python3 -m http.server 8080
-# Open on phone browser: http://<laptop-ip>:8080/SindhiPheethoKeyboard-debug.apk
 ```
+Open `http://<laptop-ip>:8080/SindhiPheethoKeyboard-debug.apk` in phone browser and tap install.

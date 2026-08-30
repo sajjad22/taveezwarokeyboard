@@ -158,40 +158,49 @@ class Keyboard(private val context: Context) {
         circle.centre = circleCenter
         circle.radius = radius
 
-        path.rewind()
-        // 5 dividing lines at angles 36°, 108°, 180°, 252°, 324°
-        for (i in 0 until 5) {
-            val lineAngle = (36.0 + i * 72.0) * Math.PI / 180.0
-            val startX = circleCenter.x + radius * cos(lineAngle).toFloat()
-            val startY = circleCenter.y - radius * sin(lineAngle).toFloat()
-            val endX = circleCenter.x + (radius + lengthOfLineDemarcatingSectors) * cos(lineAngle).toFloat()
-            val endY = circleCenter.y - (radius + lengthOfLineDemarcatingSectors) * sin(lineAngle).toFloat()
-            path.moveTo(startX, startY)
-            path.lineTo(endX, endY)
+        val letterPositions = List(4 * 2 * 4 * 2) { 0f }.toFloatArray()
+        val matrix = Matrix()
+        val eastEdge = circleCenter.x + radius + characterHeight / 2f
+        for (i in 0 until 4) {
+            val dx = i * lengthOfLineDemarcatingSectors / 4f
+            letterPositions[4 * i] = eastEdge + dx
+            letterPositions[4 * i + 1] = circleCenter.y - characterHeight / 2f
+            letterPositions[4 * i + 2] = eastEdge + dx
+            letterPositions[4 * i + 3] = circleCenter.y + characterHeight / 2f
         }
+        path.rewind()
+
+        path.moveTo(circle.centre.x + circle.radius, circle.centre.y)
+        path.relativeLineTo(lengthOfLineDemarcatingSectors, 0f)
+        path.moveTo(circle.centre.x - circle.radius, circle.centre.y)
+        path.relativeLineTo(-lengthOfLineDemarcatingSectors, 0f)
+        path.moveTo(circle.centre.x, circle.centre.y + circle.radius)
+        path.relativeLineTo(0f, lengthOfLineDemarcatingSectors)
+        path.moveTo(circle.centre.x, circle.centre.y - circle.radius)
+        path.relativeLineTo(0f, -lengthOfLineDemarcatingSectors)
+        matrix.reset()
+
+        matrix.postRotate(45f, circleCenter.x, circleCenter.y)
+        path.asAndroidPath().transform(matrix)
         bounds = path.getBounds()
+        matrix.mapPoints(letterPositions, 0, letterPositions, 0, 8)
+        matrix.reset()
+        matrix.postRotate(90f, circleCenter.x, circleCenter.y)
 
-        // 50 keys across 10 spokes (5 sectors x 2 spokes x 5 levels)
-        for (sectorIdx in 0 until 5) {
-            val sectorBaseAngle = (sectorIdx * 72.0) * Math.PI / 180.0
-            for (spokeOffset in 0 until 2) {
-                val spokeAngle = if (spokeOffset == 0) {
-                    sectorBaseAngle + (18.0 * Math.PI / 180.0) // Counter-clockwise spoke
-                } else {
-                    sectorBaseAngle - (18.0 * Math.PI / 180.0) // Clockwise spoke
-                }
-
-                val spokeGlobalIdx = sectorIdx * 2 + spokeOffset
-                for (level in 0 until 5) {
-                    val keyIndex = spokeGlobalIdx * 5 + level
-                    if (keyIndex < keys.size) {
-                        val distance = radius + characterHeight * 0.7f + (level * (lengthOfLineDemarcatingSectors - characterHeight * 0.5f) / 4.2f)
-                        val keyX = circleCenter.x + distance * cos(spokeAngle).toFloat() - characterHeight / 3f
-                        val keyY = circleCenter.y - distance * sin(spokeAngle).toFloat() - characterHeight / 2f
-                        keys[keyIndex].position = Offset(keyX, keyY)
-                    }
-                }
-            }
+        for (i in 1 until 4) {
+            matrix.mapPoints(
+                letterPositions,
+                4 * 4 * i,
+                letterPositions,
+                4 * 4 * (i - 1),
+                8
+            )
+        }
+        matrix.reset()
+        matrix.postTranslate(-characterHeight / 3f, -characterHeight / 2f)
+        matrix.mapPoints(letterPositions)
+        keys.withIndex().forEach { (i, key) ->
+            key.position = Offset(letterPositions[i * 2], letterPositions[i * 2 + 1])
         }
     }
 
@@ -224,10 +233,10 @@ class Keyboard(private val context: Context) {
         }
 
         fun getSectorOfPoint(point: Offset): FingerPosition {
-            val angleInRadians = getAngleInRadiansOfPointWithRespectToCentreOfCircle(point)
-            val shiftedAngle = (angleInRadians + (Math.PI / 5.0)) % (2.0 * Math.PI)
-            val sectorIndex = (shiftedAngle / (2.0 * Math.PI / 5.0)).toInt().coerceIn(0, 4)
-            return FingerPosition.sectors5[sectorIndex]
+            val angleDouble = getAngleInRadiansOfPointWithRespectToCentreOfCircle(point)
+            val angleToSectorValue = angleDouble / (Math.PI / 2)
+            val quadrantCyclic = angleToSectorValue.roundToInt()
+            return baseQuadrant(quadrantCyclic).toFingerPosition()
         }
 
         private fun getAngleInRadiansOfPointWithRespectToCentreOfCircle(point: Offset): Float {

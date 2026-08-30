@@ -22,6 +22,22 @@ class Key(val index: Int, private val keyboard: Keyboard) {
         if (isCapitalize) keyboardAction.capsLockText else keyboardAction.text
     }.orEmpty()
 
+    fun lowerText(): String = nullable {
+        val keyboardData = ensureNotNull(keyboard.keyboardData)
+        val characterSets = keyboardData.characterSets(keyboard.layerLevel).bind()
+        val action = characterSets.elementAtOrNone(index).bind()
+        val keyboardAction = ensureNotNull(action)
+        keyboardAction.text
+    }.orEmpty()
+
+    fun upperText(): String = nullable {
+        val keyboardData = ensureNotNull(keyboard.keyboardData)
+        val characterSets = keyboardData.characterSets(keyboard.layerLevel).bind()
+        val action = characterSets.elementAtOrNone(index).bind()
+        val keyboardAction = ensureNotNull(action)
+        keyboardAction.capsLockText
+    }.orEmpty()
+
     val backgroundColor: Color
-        get() = keyboard.trailColor!!.blendARGB(Color.White, 0.5f)
+        get() = keyboard.trailColor?.blendARGB(Color.White, 0.5f) ?: Color.LightGray
 }

@@ -52,11 +52,10 @@ class CircleSpec : FunSpec() {
                     "Finger at (${it.second.x}, ${it.second.y})" +
                         "should be the ${it.first} sector"
                 },
-                (FingerPosition.RIGHT to Offset(10f, 0f)),
-                (FingerPosition.TOP_RIGHT to Offset(3f, -9f)),
-                (FingerPosition.TOP_LEFT to Offset(-8f, -6f)),
-                (FingerPosition.BOTTOM_LEFT to Offset(-8f, 6f)),
-                (FingerPosition.BOTTOM_RIGHT to Offset(3f, 9f))
+                (FingerPosition.TOP to Offset(0f, -10f)),
+                (FingerPosition.LEFT to Offset(-10f, 0f)),
+                (FingerPosition.BOTTOM to Offset(0f, 10f)),
+                (FingerPosition.RIGHT to Offset(10f, 0f))
             ) { (position, point) ->
                 keyboardCircle.getSectorOfPoint(point) shouldBe position
             }

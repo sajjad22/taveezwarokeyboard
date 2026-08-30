@@ -9,16 +9,14 @@ class QuadrantSpec : FunSpec({
         withData(
             nameFn = { "${it.first.sector}/${it.first.part} should have index: ${it.second}" },
             listOf(
-                (Quadrant(Direction.RIGHT, Direction.TOP) to 0),
-                (Quadrant(Direction.RIGHT, Direction.BOTTOM) to 5),
-                (Quadrant(Direction.TOP_RIGHT, Direction.TOP) to 10),
-                (Quadrant(Direction.TOP_RIGHT, Direction.BOTTOM) to 15),
-                (Quadrant(Direction.TOP_LEFT, Direction.TOP) to 20),
-                (Quadrant(Direction.TOP_LEFT, Direction.BOTTOM) to 25),
-                (Quadrant(Direction.BOTTOM_LEFT, Direction.TOP) to 30),
-                (Quadrant(Direction.BOTTOM_LEFT, Direction.BOTTOM) to 35),
-                (Quadrant(Direction.BOTTOM_RIGHT, Direction.TOP) to 40),
-                (Quadrant(Direction.BOTTOM_RIGHT, Direction.BOTTOM) to 45)
+                (Quadrant(Direction.RIGHT, Direction.BOTTOM) to 0),
+                (Quadrant(Direction.BOTTOM, Direction.RIGHT) to 1),
+                (Quadrant(Direction.BOTTOM, Direction.LEFT) to 8),
+                (Quadrant(Direction.LEFT, Direction.BOTTOM) to 9),
+                (Quadrant(Direction.LEFT, Direction.TOP) to 16),
+                (Quadrant(Direction.TOP, Direction.LEFT) to 17),
+                (Quadrant(Direction.TOP, Direction.RIGHT) to 24),
+                (Quadrant(Direction.RIGHT, Direction.TOP) to 25)
             )
         ) { (quadrant, index) ->
             quadrant.characterIndexInString(CharacterPosition.FIRST) shouldBe index
@@ -30,8 +28,10 @@ class QuadrantSpec : FunSpec({
         withData(
             nameFn = { "${it.first} should be ${it.second.sector}/${it.second.part}" },
             listOf(
-                (CharacterPosition.FIRST to Quadrant(Direction.TOP_LEFT, Direction.TOP)),
-                (CharacterPosition.SECOND to Quadrant(Direction.TOP_LEFT, Direction.TOP))
+                (CharacterPosition.FIRST to Quadrant(Direction.RIGHT, Direction.TOP)),
+                (CharacterPosition.SECOND to Quadrant(Direction.BOTTOM, Direction.RIGHT)),
+                (CharacterPosition.THIRD to Quadrant(Direction.LEFT, Direction.BOTTOM)),
+                (CharacterPosition.FOURTH to Quadrant(Direction.TOP, Direction.LEFT))
             )
         ) { (position, opposite) ->
             quadrant.opposite(position) shouldBe opposite

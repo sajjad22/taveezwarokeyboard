@@ -6,80 +6,55 @@ layers:
     sectors:
       right:
         parts:
-          top:
-            - lower_case: "e"
-            - lower_case: "a"
-            - lower_case: "r"
-            - lower_case: "i"
-            - lower_case: "o"
           bottom:
-            - lower_case: "t"
-            - lower_case: "n"
-            - lower_case: "s"
-            - lower_case: "h"
-            - lower_case: "d"
-      top_right:
-        parts:
+            - lower_case: n
+            - lower_case: m
+            - lower_case: f
+            - lower_case: "!"
+              upper_case: "!!!"
           top:
-            - lower_case: "l"
-            - lower_case: "c"
-            - lower_case: "u"
-            - lower_case: "m"
-            - lower_case: "w"
-          bottom:
-            - lower_case: "f"
-            - lower_case: "g"
-            - lower_case: "y"
-            - lower_case: "p"
-            - lower_case: "b"
-      top_left:
-        parts:
-          top:
-            - lower_case: "v"
-            - lower_case: "k"
-            - lower_case: "j"
-            - lower_case: "x"
-            - lower_case: "q"
-          bottom:
-            - lower_case: "z"
-            - lower_case: "."
-              upper_case: ":"
-            - lower_case: ","
-              upper_case: ";"
+            - lower_case: a
+            - lower_case: r
+            - lower_case: x
             - lower_case: "?"
-              upper_case: "!"
+              upper_case: "*"
+      top:
+        parts:
+          right:
+            - lower_case: y
+            - lower_case: b
+            - lower_case: p
+            - lower_case: q
+          left:
+            - lower_case: s
+            - lower_case: d
+            - lower_case: g
             - lower_case: "'"
               upper_case: '"'
-      bottom_left:
+      left:
         parts:
           top:
-            - lower_case: "1"
-            - lower_case: "2"
-            - lower_case: "3"
-            - lower_case: "4"
-            - lower_case: "5"
+            - lower_case: t
+            - lower_case: c
+            - lower_case: z
+            - lower_case: .
+              upper_case: "-"
           bottom:
-            - lower_case: "6"
-            - lower_case: "7"
-            - lower_case: "8"
-            - lower_case: "9"
-            - lower_case: "0"
-      bottom_right:
+            - lower_case: i
+            - lower_case: h
+            - lower_case: j
+            - lower_case: ","
+              upper_case: _
+      bottom:
         parts:
-          top:
+          left:
+            - lower_case: e
+            - lower_case: l
+            - lower_case: k
             - lower_case: "@"
               upper_case: "@gmail.com"
-            - lower_case: "-"
-              upper_case: "_"
-            - lower_case: "/"
-              upper_case: "\\"
-            - lower_case: "("
-              upper_case: "["
-            - lower_case: ")"
-              upper_case: "]"
-          bottom:
-            - lower_case: "#"
-            - lower_case: "$"
-            - lower_case: "%"
-            - lower_case: "&"
-            - lower_case: "*"
+          right:
+            - lower_case: o
+            - lower_case: u
+            - lower_case: v
+            - lower_case: w

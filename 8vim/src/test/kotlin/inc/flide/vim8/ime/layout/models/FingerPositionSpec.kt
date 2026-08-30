@@ -6,62 +6,55 @@ import io.kotest.matchers.shouldBe
 
 class FingerPositionSpec : FunSpec({
     context("computing movement sequence") {
-        val quadrant = Quadrant(Direction.RIGHT, Direction.TOP)
+        val quadrant = Quadrant(Direction.BOTTOM, Direction.LEFT)
         withData(
             nameFn = { "for the ${it.first} layer at ${it.second} position" },
-            Triple(
-                LayerLevel.FIRST,
-                CharacterPosition.FIRST,
-                listOf(
-                    FingerPosition.INSIDE_CIRCLE,
-                    FingerPosition.RIGHT,
-                    FingerPosition.INSIDE_CIRCLE
-                )
-            ),
-            Triple(
-                LayerLevel.FIRST,
-                CharacterPosition.SECOND,
-                listOf(
-                    FingerPosition.INSIDE_CIRCLE,
-                    FingerPosition.RIGHT,
-                    FingerPosition.TOP_RIGHT,
-                    FingerPosition.INSIDE_CIRCLE
-                )
-            ),
-            Triple(
-                LayerLevel.FIRST,
-                CharacterPosition.THIRD,
-                listOf(
-                    FingerPosition.INSIDE_CIRCLE,
-                    FingerPosition.RIGHT,
-                    FingerPosition.TOP_RIGHT,
-                    FingerPosition.TOP_LEFT,
-                    FingerPosition.INSIDE_CIRCLE
-                )
-            ),
-            Triple(
-                LayerLevel.FIRST,
-                CharacterPosition.FOURTH,
-                listOf(
-                    FingerPosition.INSIDE_CIRCLE,
-                    FingerPosition.RIGHT,
-                    FingerPosition.TOP_RIGHT,
-                    FingerPosition.TOP_LEFT,
-                    FingerPosition.BOTTOM_LEFT,
-                    FingerPosition.INSIDE_CIRCLE
-                )
-            ),
-            Triple(
-                LayerLevel.FIRST,
-                CharacterPosition.FIFTH,
-                listOf(
-                    FingerPosition.INSIDE_CIRCLE,
-                    FingerPosition.RIGHT,
-                    FingerPosition.TOP_RIGHT,
-                    FingerPosition.TOP_LEFT,
-                    FingerPosition.BOTTOM_LEFT,
-                    FingerPosition.BOTTOM_RIGHT,
-                    FingerPosition.INSIDE_CIRCLE
+            listOf(
+                Triple(
+                    LayerLevel.FIRST,
+                    CharacterPosition.FIRST,
+                    listOf(
+                        FingerPosition.INSIDE_CIRCLE,
+                        FingerPosition.BOTTOM,
+                        FingerPosition.LEFT,
+                        FingerPosition.INSIDE_CIRCLE
+                    )
+                ),
+                Triple(
+                    LayerLevel.FIRST,
+                    CharacterPosition.SECOND,
+                    listOf(
+                        FingerPosition.INSIDE_CIRCLE,
+                        FingerPosition.BOTTOM,
+                        FingerPosition.LEFT,
+                        FingerPosition.TOP,
+                        FingerPosition.INSIDE_CIRCLE
+                    )
+                ),
+                Triple(
+                    LayerLevel.FIRST,
+                    CharacterPosition.THIRD,
+                    listOf(
+                        FingerPosition.INSIDE_CIRCLE,
+                        FingerPosition.BOTTOM,
+                        FingerPosition.LEFT,
+                        FingerPosition.TOP,
+                        FingerPosition.RIGHT,
+                        FingerPosition.INSIDE_CIRCLE
+                    )
+                ),
+                Triple(
+                    LayerLevel.FIRST,
+                    CharacterPosition.FOURTH,
+                    listOf(
+                        FingerPosition.INSIDE_CIRCLE,
+                        FingerPosition.BOTTOM,
+                        FingerPosition.LEFT,
+                        FingerPosition.TOP,
+                        FingerPosition.RIGHT,
+                        FingerPosition.BOTTOM,
+                        FingerPosition.INSIDE_CIRCLE
+                    )
                 )
             )
         ) { (layer, position, result) ->

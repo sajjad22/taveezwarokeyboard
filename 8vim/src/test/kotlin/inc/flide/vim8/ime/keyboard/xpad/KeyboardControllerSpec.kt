@@ -76,11 +76,11 @@ class KeyboardControllerSpec : FunSpec({
                 every { displayMetrics } returns dm
             }
             every { keyboardManager() } returns lazy {
-                mockk {
+                mockk(relaxed = true) {
                     every { inputEventDispatcher } answers { eventDispatcher }
-                    every { activeState } returns mockk {
-                        every { isFnOn } returns true
-                    }
+                    val state = inc.flide.vim8.ime.keyboard.text.ObservableKeyboardState.new().apply { isFnOn = true }
+                    every { activeState } returns state
+                    every { previewChar } returns androidx.compose.runtime.mutableStateOf<String?>(null)
                 }
             }
             every { themeManager() } returns lazy {
@@ -301,9 +301,9 @@ class KeyboardControllerSpec : FunSpec({
             val controller = KeyboardController(context).also { it.keyboard = xpadKeyboard }
 
             controller.onTouchEventInternal(event)
-            delay(500)
+            delay(800)
             controller.onTouchEventInternal(event)
-            delay(200) // wait for interruptLongPress coroutine to complete
+            delay(300) // wait for interruptLongPress coroutine to complete
 
             verifyOrder {
                 for ((m, action) in movements) {

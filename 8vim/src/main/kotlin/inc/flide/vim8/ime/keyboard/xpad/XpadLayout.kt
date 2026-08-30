@@ -3,10 +3,13 @@ package inc.flide.vim8.ime.keyboard.xpad
 import android.view.MotionEvent
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.absoluteOffset
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -16,10 +19,12 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.CornerRadius
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.drawscope.Stroke
@@ -35,6 +40,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import inc.flide.vim8.R
 import inc.flide.vim8.appPreferenceModel
@@ -82,7 +88,7 @@ fun XpadLayout() = with(LocalDensity.current) {
     val touchEventChannel = remember { Channel<MotionEvent>(64) }
 
     val controller = remember { KeyboardController(context) }.also { it.keyboard = keyboard }
-    val fg = MaterialTheme.colorScheme.onSurface
+    val axisColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.85f)
     val iconSize = 25.sp.toDp()
     val iconHalf = iconSize / 2
 
@@ -127,7 +133,7 @@ fun XpadLayout() = with(LocalDensity.current) {
                 return@pointerInteropFilter true
             }
             .drawWithContent {
-                controller.drawSectors(this, controller.hasVirtualCentre, fg)
+                controller.drawSectors(this, controller.hasVirtualCentre, axisColor)
                 if (controller.hasTrail && controller.trailPoints.isNotEmpty()) {
                     controller.drawTrail(this, controller.trailPoints)
                 }
@@ -229,23 +235,27 @@ private fun KeyButton(key: Key) = with(LocalDensity.current) {
     val context = LocalContext.current
     val keyboardManager by context.keyboardManager()
     val activeState by keyboardManager.activeState.collectAsState()
-    val text = key.text(activeState.isUppercase)
+    val lower = key.lowerText()
+    val upper = key.upperText()
+    val isUpperActive = activeState.isUppercase
+
+    val primaryText = if (isUpperActive) upper.ifEmpty { lower } else lower
+    val secondaryText = if (isUpperActive) lower else upper
+    val showSecondary = secondaryText.isNotEmpty() && secondaryText != primaryText
+
     val style = if (key.isSelected) textStyleBold else textStyle
 
-    Text(
+    Box(
         modifier = Modifier
             .absoluteOffset {
                 key.position.toIntOffset()
             }
             .drawWithContent {
                 if (key.isSelected) {
-                    val topLeft = key.position.copy(
-                        x = -FONT_SIZE,
-                        y = -FONT_SIZE
-                    )
+                    val topLeft = Offset(-FONT_SIZE / 2f, -FONT_SIZE / 2f)
                     val size = this.size.copy(
-                        this.size.width + FONT_SIZE * 2f,
-                        this.size.height + FONT_SIZE * 2f
+                        this.size.width + FONT_SIZE,
+                        this.size.height + FONT_SIZE
                     )
                     drawRoundRect(
                         color = key.backgroundColor,
@@ -262,9 +272,25 @@ private fun KeyButton(key: Key) = with(LocalDensity.current) {
                     )
                 }
                 drawContent()
-            },
-        text = text,
-        color = if (key.isSelected) Color.Black else MaterialTheme.colorScheme.onBackground,
-        style = style
-    )
+            }
+    ) {
+        Row(
+            verticalAlignment = Alignment.Bottom
+        ) {
+            Text(
+                text = primaryText,
+                color = if (key.isSelected) Color.Black else MaterialTheme.colorScheme.onBackground,
+                style = style
+            )
+            if (showSecondary) {
+                Text(
+                    text = secondaryText,
+                    color = if (key.isSelected) Color.DarkGray else MaterialTheme.colorScheme.onBackground.copy(alpha = 0.45f),
+                    fontSize = 11.sp,
+                    fontWeight = FontWeight.Normal,
+                    modifier = Modifier.padding(start = 1.dp, bottom = 2.dp)
+                )
+            }
+        }
+    }
 }

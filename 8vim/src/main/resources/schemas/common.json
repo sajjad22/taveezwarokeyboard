@@ -119,9 +119,9 @@
       "items": {
         "$ref": "#/$defs/action"
       },
-      "maxItems": 5,
+      "maxItems": 4,
       "message": {
-        "maxItems": "There is only up to 5 actions per sectors/parts"
+        "maxItems": "There is only up to 4 actions per sectors/parts"
       }
     },
     "info": {

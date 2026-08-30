@@ -4,6 +4,5 @@ enum class CharacterPosition {
     FIRST,
     SECOND,
     THIRD,
-    FOURTH,
-    FIFTH
+    FOURTH
 }

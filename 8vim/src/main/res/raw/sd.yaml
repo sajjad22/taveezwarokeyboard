@@ -9,192 +9,150 @@ layers:
         parts:
           top:
             - lower_case: "ي"
+              upper_case: "ڌ"
+            - lower_case: "س"
+              upper_case: "ض"
+            - lower_case: "ک"
               upper_case: "َ"
-            - lower_case: "ت"
-              upper_case: "ٽ"
-            - lower_case: "ش"
-              upper_case: "ِ"
-            - lower_case: "ز"
-              upper_case: "ُ"
-            - lower_case: "ض"
-              upper_case: "ّ"
+            - lower_case: "ٽ"
+              upper_case: "ً"
           bottom:
             - lower_case: "ا"
-              upper_case: "آ"
-            - lower_case: "ڪ"
-              upper_case: "ک"
-            - lower_case: "ڏ"
-              upper_case: "ْ"
-            - lower_case: "ص"
-              upper_case: "ً"
-            - lower_case: "ظ"
+              upper_case: "ڳ"
+            - lower_case: "ل"
+              upper_case: "ظ"
+            - lower_case: "ڻ"
+              upper_case: "ِ"
+            - lower_case: "ف"
               upper_case: "ٍ"
-      top_right:
+      top:
         parts:
-          top:
+          right:
             - lower_case: "ن"
-              upper_case: "ڻ"
-            - lower_case: "د"
-              upper_case: "ڌ"
-            - lower_case: "ق"
-              upper_case: "ء"
-            - lower_case: "ڌ"
-              upper_case: "ٰ"
-            - lower_case: "ڃ"
-              upper_case: "ٌ"
-          bottom:
-            - lower_case: "و"
-              upper_case: "ؤ"
-            - lower_case: "ب"
               upper_case: "ٻ"
-            - lower_case: "ح"
-              upper_case: "خ"
-            - lower_case: "ڳ"
-              upper_case: "ڱ"
-            - lower_case: "غ"
-              upper_case: "ـ"
-      top_left:
+            - lower_case: "ت"
+              upper_case: "ڃ"
+            - lower_case: "ع"
+              upper_case: "ُ"
+            - lower_case: "چ"
+              upper_case: "ٌ"
+          left:
+            - lower_case: "و"
+              upper_case: "ط"
+            - lower_case: "ڪ"
+              upper_case: "غ"
+            - lower_case: "ٿ"
+              upper_case: "ّ"
+            - lower_case: "ڙ"
+              upper_case: "ْ"
+      left:
         parts:
           top:
             - lower_case: "ر"
-              upper_case: "ڙ"
-            - lower_case: "پ"
-              upper_case: "ڀ"
-            - lower_case: "ٽ"
-              upper_case: "ٺ"
-            - lower_case: "ٻ"
-              upper_case: "؟"
-            - lower_case: "ڄ"
-              upper_case: "،"
+              upper_case: "ڊ"
+            - lower_case: "د"
+              upper_case: "ڄ"
+            - lower_case: "ش"
+              upper_case: "ٰ"
+            - lower_case: "گ"
+              upper_case: "ڱ"
           bottom:
             - lower_case: "ھ"
-              upper_case: "ه"
-            - lower_case: "ئ"
-              upper_case: "ى"
-            - lower_case: "ف"
-              upper_case: "ڦ"
-            - lower_case: "ط"
-              upper_case: "؛"
-            - lower_case: "ذ"
-              upper_case: "ژ"
-      bottom_left:
-        parts:
-          top:
-            - lower_case: "م"
-              upper_case: "محمّد"
-            - lower_case: "ک"
-              upper_case: "ڪ"
-            - lower_case: "چ"
-              upper_case: "ڇ"
-            - lower_case: "ڊ"
-              upper_case: "ڍ"
-            - lower_case: "ث"
-              upper_case: "!"
-          bottom:
-            - lower_case: "ج"
-              upper_case: "ڄ"
-            - lower_case: "ڻ"
-              upper_case: "ن"
-            - lower_case: "ڙ"
-              upper_case: "ر"
-            - lower_case: "ٺ"
-              upper_case: "."
-            - lower_case: "ڍ"
-              upper_case: "-"
-      bottom_right:
-        parts:
-          top:
-            - lower_case: "س"
-              upper_case: "ش"
-            - lower_case: "ع"
-              upper_case: "غ"
-            - lower_case: "گ"
-              upper_case: "ڳ"
-            - lower_case: "ڀ"
-              upper_case: "۽"
-            - lower_case: "ڦ"
-              upper_case: "«"
-          bottom:
-            - lower_case: "ل"
-              upper_case: "اللّٰه"
-            - lower_case: "ٿ"
               upper_case: "ٺ"
+            - lower_case: "ب"
+              upper_case: "ذ"
+            - lower_case: "ڏ"
+              upper_case: "آ"
             - lower_case: "خ"
-              upper_case: "ح"
-            - lower_case: "ڇ"
+              upper_case: "ء"
+      bottom:
+        parts:
+          left:
+            - lower_case: "م"
+              upper_case: "ڀ"
+            - lower_case: "پ"
+              upper_case: "ڦ"
+            - lower_case: "ق"
+              upper_case: "اللّٰه"
+            - lower_case: "ز"
+              upper_case: "محمّد"
+          right:
+            - lower_case: "ج"
+              upper_case: "ڇ"
+            - lower_case: "ئ"
+              upper_case: "ڍ"
+            - lower_case: "ح"
               upper_case: "ﷺ"
-            - lower_case: "ڱ"
-              upper_case: "»"
+            - lower_case: "ص"
+              upper_case: "۽"
   extra_layers:
     first:
       sectors:
-        top_left:
-          parts:
-            top:
-              - lower_case: "۲"
-              - lower_case: "۳"
-              - lower_case: "۴"
-              - lower_case: "۵"
-              - lower_case: "2"
-            bottom:
-              - lower_case: "۶"
-              - lower_case: "۷"
-              - lower_case: "۸"
-              - lower_case: "۹"
-              - lower_case: "3"
         right:
           parts:
             top:
-              - lower_case: "َ"
-              - lower_case: "ً"
-              - lower_case: "آ"
-              - lower_case: "أ"
-              - lower_case: "0"
+              - lower_case: "۰"
+                upper_case: "0"
+              - lower_case: "۱"
+                upper_case: "1"
+              - lower_case: "۲"
+                upper_case: "2"
+              - lower_case: "۳"
+                upper_case: "3"
             bottom:
-              - lower_case: "ُ"
-              - lower_case: "ٌ"
-              - lower_case: "إ"
-              - lower_case: "’"
-              - lower_case: "1"
-        bottom_left:
+              - lower_case: "۴"
+                upper_case: "4"
+              - lower_case: "۵"
+                upper_case: "5"
+              - lower_case: "۶"
+                upper_case: "6"
+              - lower_case: "۷"
+                upper_case: "7"
+        top:
           parts:
-            top:
-              - lower_case: "ڱ"
-              - lower_case: "ى"
-              - lower_case: "ء"
-              - lower_case: "۽"
-              - lower_case: "4"
-            bottom:
-              - lower_case: "ـ"
+            right:
+              - lower_case: "۸"
+                upper_case: "8"
+              - lower_case: "۹"
+                upper_case: "9"
+              - lower_case: "؟"
+                upper_case: "?"
+              - lower_case: "،"
+                upper_case: ","
+            left:
               - lower_case: "؛"
+                upper_case: ";"
+              - lower_case: "."
+                upper_case: ":"
               - lower_case: "«"
+                upper_case: "<"
               - lower_case: "»"
-              - lower_case: "5"
-        top_right:
+                upper_case: ">"
+        left:
           parts:
             top:
+              - lower_case: "َ"
               - lower_case: "ِ"
+              - lower_case: "ُ"
+              - lower_case: "ّ"
+            bottom:
+              - lower_case: "ْ"
+              - lower_case: "ً"
               - lower_case: "ٍ"
+              - lower_case: "ٌ"
+        bottom:
+          parts:
+            left:
               - lower_case: "ٰ"
               - lower_case: "ٖ"
-              - lower_case: "6"
-            bottom:
-              - lower_case: "ّ"
-              - lower_case: "ْ"
-              - lower_case: "۰"
-              - lower_case: "۱"
-              - lower_case: "7"
-        bottom_right:
-          parts:
-            top:
-              - lower_case: "8"
-              - lower_case: "9"
-              - lower_case: "؟"
-              - lower_case: "،"
-              - lower_case: "."
-            bottom:
+              - lower_case: "ـ"
+              - lower_case: "!"
+            right:
               - lower_case: "("
+                upper_case: "["
               - lower_case: ")"
+                upper_case: "]"
               - lower_case: "/"
+                upper_case: "\\"
               - lower_case: "@"
-              - lower_case: "#"
+                upper_case: "#"
