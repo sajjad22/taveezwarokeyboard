@@ -1,7 +1,7 @@
 [versions]
 # Main
 androidx-activity = "1.12.4"
-android-gradle-plugin = "9.1.0"
+android-gradle-plugin = "9.3.2"
 android-appcompat = "1.7.1"
 android-material = "1.13.0"
 androidx-compose = "1.10.4"
