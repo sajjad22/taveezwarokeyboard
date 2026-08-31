@@ -34,7 +34,7 @@ jobs:
       - id: commit
         run: |
           echo "previous=$(git rev-parse HEAD^)" >> $GITHUB_OUTPUT
-      - uses: dorny/paths-filter@v3
+      - uses: dorny/paths-filter@v4
         id: ci_changes
         with:
           base: ${{steps.commit.outputs.previous}}
@@ -43,7 +43,7 @@ jobs:
             ci:
               - '.github/workflows/*.yaml'
               - '.github/workflows/*.yml'
-      - uses: dorny/paths-filter@v3
+      - uses: dorny/paths-filter@v4
         id: changes
         with:
           base: ${{steps.commit.outputs.previous}}
