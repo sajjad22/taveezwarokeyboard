@@ -23,7 +23,7 @@ ktlint = "12.1.1"
 kotlin = "2.4.10"
 ksp = "2.3.11"
 logback-android = "3.0.0"
-mikepenz-aboutlibraries = "11.2.3"
+mikepenz-aboutlibraries = "15.1.1"
 mannodermaus-android-junit5 = "1.13.1.0"
 slf4j = "2.0.16"
 
