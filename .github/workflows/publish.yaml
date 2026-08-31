@@ -47,7 +47,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: v${{inputs.version_name}}
       - name: Download artifact
@@ -74,7 +74,7 @@ jobs:
     if: ${{!contains(inputs.version_name, 'rc')}}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           token: ${{secrets.PAT}}
           repository: 8VIM/8VIM.github.io
@@ -105,7 +105,7 @@ jobs:
       target: ${{contains(inputs.version_name, 'rc') && 'rc' || 'release'}}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Download artifact
         id: artifact
         uses: actions/download-artifact@v4
