@@ -21,7 +21,7 @@ jobs:
       src: ${{ steps.changes.outputs.src }}
       schemas: ${{ steps.changes.outputs.schemas }}
     steps:
-      - uses: dorny/paths-filter@v3
+      - uses: dorny/paths-filter@v4
         id: changes
         with:
           filters: |
