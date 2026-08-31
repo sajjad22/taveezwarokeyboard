@@ -2,6 +2,7 @@ package inc.flide.vim8.ime.nlp
 
 import android.content.Context
 import inc.flide.vim8.Vim8ImeService
+import inc.flide.vim8.appPreferenceModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -16,41 +17,30 @@ internal val WORD_BOUNDARY_CHARS = setOf(' ', '.', ',')
 
 /**
  * Manages word suggestions for the keyboard.
- *
- * Uses a private [WordFrequencyRepository] backed by a local SQLite database.  Words gain
- * frequency each time they are typed or selected from the suggestion bar, so predictions
- * improve organically over time starting from a built-in seed list.
- *
- * All database I/O is performed on [Dispatchers.IO]; the resulting suggestions are posted back
- * to the [suggestions] [StateFlow] on the same dispatcher (Compose collects it safely on any
- * thread via `collectAsState()`).
  */
 class SuggestionsManager(
     context: Context,
     private val repository: WordFrequencyRepository = WordFrequencyRepository(context)
 ) {
+    private val prefs by appPreferenceModel()
     private val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 
     private val _suggestions = MutableStateFlow<List<String>>(emptyList())
     val suggestions: StateFlow<List<String>> = _suggestions.asStateFlow()
 
-    /**
-     * The number of characters belonging to the current partial word being typed.
-     * Set to 0 in next-word prediction mode so that committing a suggestion does not
-     * delete any text before the cursor.
-     */
     var currentWordLength: Int = 0
         private set
 
+    private fun detectLanguage(sampleText: String): String {
+        if (sampleText.any { it in '\u0600'..'\u06FF' || it in '\uFB50'..'\uFDFF' || it in '\uFE70'..'\uFEFF' }) {
+            return "sd"
+        }
+        val layout = prefs.layout.current.get().path.toString()
+        return if (layout.contains("sd")) "sd" else "en"
+    }
+
     /**
      * Called whenever the text before the cursor changes.
-     *
-     * Two modes:
-     * - **Completion mode** — the cursor is inside a word: queries the repository for prefix
-     *   completions and updates [currentWordLength].
-     * - **Next-word mode** — the last character is a word boundary (space, `.`, `,`): records
-     *   the word that was just completed and returns the globally most-frequent words as
-     *   next-word candidates.
      */
     fun onTextBeforeCursor(text: CharSequence) {
         val str = text.toString()
@@ -60,15 +50,17 @@ class SuggestionsManager(
             return
         }
 
+        val lang = detectLanguage(str)
+
         if (str.last() in WORD_BOUNDARY_CHARS) {
             currentWordLength = 0
             val completedWord = extractWordBeforeBoundary(str)
             scope.launch {
-                // Record the completed word so its frequency grows over time.
                 if (completedWord.isNotEmpty()) {
-                    repository.recordWord(completedWord)
+                    val wordLang = if (completedWord.any { it in '\u0600'..'\u06FF' || it in '\uFB50'..'\uFDFF' || it in '\uFE70'..'\uFEFF' }) "sd" else "en"
+                    repository.recordWord(completedWord, wordLang)
                 }
-                _suggestions.value = repository.getTopWords(MAX_SUGGESTIONS)
+                _suggestions.value = repository.getTopWords(lang, MAX_SUGGESTIONS)
             }
         } else {
             val currentWord = extractCurrentWord(str)
@@ -78,17 +70,17 @@ class SuggestionsManager(
                 return
             }
             scope.launch {
-                _suggestions.value = repository.getCompletions(currentWord, MAX_SUGGESTIONS)
+                _suggestions.value = repository.getCompletions(currentWord, lang, MAX_SUGGESTIONS)
             }
         }
     }
 
     /**
-     * Records that [word] was explicitly selected by the user (e.g. a suggestion chip tap).
-     * Delegates to the repository on the IO dispatcher.
+     * Records that [word] was explicitly selected by the user.
      */
     fun recordWord(word: String) {
-        scope.launch { repository.recordWord(word) }
+        val wordLang = if (word.any { it in '\u0600'..'\u06FF' || it in '\uFB50'..'\uFDFF' || it in '\uFE70'..'\uFEFF' }) "sd" else "en"
+        scope.launch { repository.recordWord(word, wordLang) }
     }
 
     /**
@@ -101,19 +93,12 @@ class SuggestionsManager(
 
     /**
      * Commits the suggestion displayed at the given visual slot via a gesture.
-     *
-     * Visual slot → rank index mapping (matches [SuggestionsBar] layout):
-     * - 0 = left chip  → rank 3 (`suggestions[2]`)
-     * - 1 = centre chip → rank 1 (`suggestions[0]`)
-     * - 2 = right chip → rank 2 (`suggestions[1]`)
-     *
-     * If the slot is empty or there is no active [InputConnection] the call is a no-op.
      */
     fun commitSuggestion(visualSlot: Int) {
         val rankIndex = when (visualSlot) {
-            0 -> 2 // left visual → suggestions[2]
-            1 -> 0 // centre visual → suggestions[0]
-            2 -> 1 // right visual → suggestions[1]
+            0 -> 2
+            1 -> 0
+            2 -> 1
             else -> return
         }
         val word = _suggestions.value.getOrNull(rankIndex) ?: return
@@ -122,21 +107,18 @@ class SuggestionsManager(
             ic.deleteSurroundingText(currentWordLength, 0)
         }
         ic.commitText("$word ", 1)
-        scope.launch { repository.recordWord(word) }
+        val wordLang = if (word.any { it in '\u0600'..'\u06FF' || it in '\uFB50'..'\uFDFF' || it in '\uFE70'..'\uFEFF' }) "sd" else "en"
+        scope.launch { repository.recordWord(word, wordLang) }
         clearSuggestions()
     }
 
     /**
-     * Cancels the background coroutine scope.  Call from [android.inputmethodservice.InputMethodService.onDestroy].
+     * Cancels the background coroutine scope.
      */
     fun destroy() {
         scope.cancel()
     }
 
-    /**
-     * Returns the partial word currently being typed (characters after the last whitespace).
-     * Returns an empty string when [text] is empty or ends with whitespace.
-     */
     internal fun extractCurrentWord(text: String): String {
         if (text.isEmpty()) return ""
         if (text.last().isWhitespace()) return ""
@@ -144,10 +126,6 @@ class SuggestionsManager(
         return if (lastWhitespace == -1) text else text.substring(lastWhitespace + 1)
     }
 
-    /**
-     * Returns the last complete word that immediately precedes a word-boundary character.
-     * Used in next-word prediction mode to determine which word was just finished.
-     */
     internal fun extractWordBeforeBoundary(text: String): String {
         val stripped = text.trimEnd { it in WORD_BOUNDARY_CHARS }
         if (stripped.isEmpty()) return ""

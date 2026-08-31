@@ -1,6 +1,7 @@
 package inc.flide.vim8.ime.keyboard.xpad
 
 import android.content.Context
+import android.view.KeyEvent
 import android.view.MotionEvent
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
@@ -116,6 +117,8 @@ class KeyboardController(context: Context) : GlideGesture.Listener {
     private var currentMovementSequenceType = MovementSequenceType.NO_MOVEMENT
     private var currentFingerPosition: FingerPosition = FingerPosition.NO_TOUCH
     private var currentKey: Key? = null
+    private var lastCircleTapTime: Long = 0L
+    private val doubleTapTimeoutMs: Long = 300L
     private val movementSequence: MutableList<FingerPosition> = arrayListOf()
     private val trailColor: Color
         get() = (
@@ -261,7 +264,24 @@ class KeyboardController(context: Context) : GlideGesture.Listener {
                 keyboard.circle.reset()
                 currentFingerPosition = FingerPosition.NO_TOUCH
                 movementSequence.add(currentFingerPosition)
-                processKeyPress(movementSequence)
+
+                if (movementSequence.size == 2 &&
+                    movementSequence[0] == FingerPosition.INSIDE_CIRCLE &&
+                    movementSequence[1] == FingerPosition.NO_TOUCH
+                ) {
+                    val now = System.currentTimeMillis()
+                    val isDoubleTapEnabled = prefs.keyboard.behavior.doubleTapCirclePeriod.get()
+                    if (isDoubleTapEnabled && now - lastCircleTapTime < doubleTapTimeoutMs) {
+                        lastCircleTapTime = 0L
+                        inputEventDispatcher.sendDownUp(KeyEvent.KEYCODE_PERIOD.toKeyboardAction())
+                    } else {
+                        lastCircleTapTime = now
+                        processKeyPress(movementSequence)
+                    }
+                } else {
+                    lastCircleTapTime = 0L
+                    processKeyPress(movementSequence)
+                }
 
                 movementSequence.clear()
                 currentMovementSequenceType = MovementSequenceType.NO_MOVEMENT

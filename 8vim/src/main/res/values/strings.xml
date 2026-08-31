@@ -21,8 +21,8 @@
     <string name="dialog__save__label">محفوظ</string>
     <string name="dialog__dismiss__label">رد</string>
 
-    <string name="about__title">بابت</string>
-    <string name="about__description">هيءُ ڪيبورڊ 8Vim مان متاثر ٿي سنڌي ٻوليءَ لاءِ ترتيب ڏنو ويو آهي.</string>
+    <string name="about__title">ڪيبورڊ بابت</string>
+    <string name="about__description">Inspired by 8Pen concept.</string>
     <string name="about__third_party_licenses__title">اوپن سورس لائسنس</string>
     <string name="about__third_party_licenses__summary">شامل لائبريريون</string>
     <string name="open_emoticon_keyboard_button_content_description">ايموجي ڪيبورڊ</string>
@@ -186,6 +186,8 @@
     <string name="settings__gesture__cursor__move__by__word__summary__off">اکر بہ اکر</string>
     <string name="settings__gesture__fn_enabled__title">فنڪشن حرڪتون</string>
     <string name="settings__gesture__fn_enabled__summary">الٽي چڪر سان آن ٿيندو</string>
+    <string name="settings__gesture__double_tap_circle_period__title">مرڪز تي ڊبل ٽيپ سان فل اسٽاپ</string>
+    <string name="settings__gesture__double_tap_circle_period__summary">دائري ۾ ٻه ڀيرا ٽيپ ڪرڻ سان (.) لکبو</string>
 
     <string name="settings__backup_and_restore__title" comment="Title of Advanced screen">بيڪ اپ ۽ ريسٽور</string>
     <string name="settings__backup_and_restore__back_up__title" comment="Title of Back up screen">بيڪ اپ</string>

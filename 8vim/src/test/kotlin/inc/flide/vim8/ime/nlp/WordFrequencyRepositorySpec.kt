@@ -54,6 +54,8 @@ class WordFrequencyRepositorySpec : FunSpec({
     context("shouldRecordWord — words that pass the filter") {
         withData(
             nameFn = { it },
+            "a",
+            "I",
             "hi",
             "the",
             "hello",
@@ -67,9 +69,7 @@ class WordFrequencyRepositorySpec : FunSpec({
         withData(
             nameFn = { "'$it'" },
             "",
-            " ",
-            "a",
-            "I"
+            " "
         ) { word ->
             subject.shouldRecordWord(word) shouldBe false
         }
@@ -128,7 +128,7 @@ private class WordFrequencyRepositoryTestSubject {
      */
     fun shouldRecordWord(word: String): Boolean {
         val lower = word.lowercase().trim()
-        return lower.isNotBlank() && lower.length >= 2
+        return lower.isNotBlank()
     }
 
     /**

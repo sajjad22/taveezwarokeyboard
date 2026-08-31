@@ -28,6 +28,11 @@ fun GestureScreen() = Screen {
                 title = stringRes(R.string.settings__gesture__fn_enabled__title),
                 summary = stringRes(R.string.settings__gesture__fn_enabled__summary)
             )
+            SwitchPreference(
+                prefs.keyboard.behavior.doubleTapCirclePeriod,
+                title = stringRes(R.string.settings__gesture__double_tap_circle_period__title),
+                summary = stringRes(R.string.settings__gesture__double_tap_circle_period__summary)
+            )
         }
     }
 }

@@ -141,16 +141,6 @@ fun SetupScreen() = Screen {
             ),
             footer = {
                 Spacer(modifier = Modifier.height(16.dp))
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Center
-                ) {
-                    TextButton(onClick = { context.launchUrl(Urls.GITHUB) }) {
-                        Text(text = stringRes(R.string.setup__footer__repository))
-                    }
-                }
             }
         )
     }

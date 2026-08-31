@@ -136,9 +136,9 @@ class KeyboardSpec : FunSpec() {
                 LayoutParam(
                     isTabletLandscape = true,
                     isSidebarOnLeft = false
-                ) to Offset(7.1f, 9.2f),
+                ) to Offset(6.7f, 9.2f),
                 LayoutParam(isTabletLandscape = true, isSidebarOnLeft = true)
-                    to Offset(2.9f, 9.2f)
+                    to Offset(3.3f, 9.2f)
             ) { (params, result) ->
                 val keyboard = Keyboard(context)
                 config.orientation =

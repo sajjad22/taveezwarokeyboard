@@ -235,6 +235,8 @@ class AppPrefs : PreferenceModel(9) {
             val cursor = Cursor()
 
             val fnEnabled = boolean("prefs_keyboard_behavior_fn_enabled", default = true)
+            val doubleTapCirclePeriod =
+                boolean("prefs_keyboard_behavior_double_tap_circle_period", default = true)
 
             inner class Cursor {
                 val moveByWord =

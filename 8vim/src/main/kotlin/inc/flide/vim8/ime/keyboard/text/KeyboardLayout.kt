@@ -3,6 +3,7 @@ package inc.flide.vim8.ime.keyboard.text
 import android.content.Context
 import android.view.MotionEvent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.absoluteOffset
@@ -12,8 +13,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.ui.unit.dp
+import inc.flide.vim8.ime.layout.models.CustomKeycode
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
@@ -123,15 +127,24 @@ fun KeyboardLayout(keyboard: Keyboard): Unit = with(LocalDensity.current) {
 @Composable
 private fun KeyButton(key: Key) = with(LocalDensity.current) {
     val size = key.visibleBounds.size.toDpSize()
+    val isMainKeypadKey = key.action.keyEventCode == CustomKeycode.SWITCH_TO_MAIN_KEYPAD.keyCode
     Box(
         modifier = Modifier
             .requiredSize(size)
             .absoluteOffset { key.visibleBounds.topLeft.toIntOffset() }
+            .then(
+                if (isMainKeypadKey) {
+                    Modifier.padding(2.dp).background(
+                        color = MaterialTheme.colorScheme.primaryContainer,
+                        shape = RoundedCornerShape(8.dp)
+                    )
+                } else Modifier
+            )
     ) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = size.height * 0.15f)
+                .padding(vertical = size.height * 0.12f)
                 .fillMaxHeight()
         ) {
             if (key.drawableId != null) {
@@ -139,10 +152,12 @@ private fun KeyButton(key: Key) = with(LocalDensity.current) {
                     painter = painterResource(key.drawableId),
                     contentDescription = null,
                     modifier = Modifier
-                        .requiredSize(20.sp.toDp())
+                        .requiredSize(if (isMainKeypadKey) 26.sp.toDp() else 20.sp.toDp())
                         .align(Alignment.Center),
                     contentScale = ContentScale.Fit,
-                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface)
+                    colorFilter = ColorFilter.tint(
+                        if (isMainKeypadKey) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface
+                    )
                 )
             } else {
                 Text(
