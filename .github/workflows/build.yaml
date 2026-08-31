@@ -54,7 +54,7 @@ jobs:
           echo "" >> 8vim/version.properties
           echo "PR=${{inputs.pr}}" >> 8vim/version.properties
           echo "SHA=${{inputs.sha}}" >> 8vim/version.properties
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v6
         with:
           java-version: "17"
           distribution: temurin
