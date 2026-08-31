@@ -8,79 +8,52 @@ This document records the full history of the project, user requests, agent reco
 
 ### User Requests & Summary of Features:
 
-1. **Complete Sindhi User Interface (سنڌي ترجمو)**:
-   - Full localization in authentic Sindhi across settings, dialogs, and setup screens.
-2. **Bottom Padding & Wheel Elevation**:
-   - Keyboard wheel lifted with a bottom margin so bottom letters are fully visible above Android navigation gestures/bars.
-3. **Lateral Letter Spacing from Diagonal Axes**:
-   - Increased lateral spoke offset (`characterHeight * 0.88f`) so letters never touch or overlap the diagonal axis lines.
-4. **Direct Layout Picker in Menu**:
-   - Clicking "Layouts / لئـائوٽس" in settings directly opens the selection dialog.
-5. **Sidebar Icons & Keypad Restructuring**:
-   - Replaced Emoji button with **Language Switcher (🌐)** (toggles between Sindhi and English instantly).
-   - Replaced Tab button with **Keyboard Switcher (⌨️)** (opens system Input Method picker).
-   - Removed Paste Pad (clipboard) button.
-   - Moved **Settings Gear (⚙️)** button to the bottom of the sidebar.
-6. **Responsive Circle Sizing**:
-   - Circle radius factor formula now scales smoothly and dynamically when adjusting the circle size slider.
-7. **Prebuilt Themes (ٿيم ۽ رنگ)**:
-   - **Sindhi Ajrak (سنڌي اجرڪ)**: Traditional Maroon (`#1E0E14`), Crimson (`#E11D48`), and Soft Rose.
-   - **Emerald Night (زمرد سائو)**: Deep Forest Green (`#06281E`) and Mint Accent (`#10B981`).
-   - **Royal Indigo (شاهي نيرو)**: Deep Navy (`#0F172A`), Sky Blue (`#38BDF8`), and Gold.
-   - **Midnight AMOLED (نيم رات ڪارو)**: Pitch Black (`#000000`) and Neon Cyan (`#00E5FF`).
-   - **Sunset Sand (ٿر جو وارياسو)**: Warm Amber, Terracotta, and Desert Sand.
-   - **Cyberpunk Neon (نيون روشني)**: Deep Purple and Electric Pink/Cyan.
-   - Standard Light, Dark, and Custom color themes.
-8. **Basic Tutorial / رهنمائي (`TutorialScreen.kt`)**:
-   - Replaced the external Help link with a built-in step-by-step tutorial in Sindhi explaining the Pheetho wheel gesture typing system.
-9. **About Screen & Attribution**:
-   - "Sindhi Pheetho Keyboard was forked from 8Vim (which was inspired by the 8Pen concept) and redesigned & developed for the Sindhi language by Sajjad Ali."
-10. **Developer Social Link**:
-    - Direct link to `https://x.com/makorro`.
+1. **Dual Language Prediction Engine (English & Sindhi)**:
+   - English word predictions on English layout (`assets/word_seed_en.csv`).
+   - Sindhi word predictions on Sindhi layout (`assets/word_seed_sd.csv` with 17,863 high-frequency words).
+   - Intelligent script detection dynamically separates English and Sindhi learning.
+2. **First Layer (Main Pheetho Wheel) Enhancements**:
+   - Standard Sindhi Heh (`ه`) placed at Level 1 (replacing `ھ`).
+   - `آ` (Alif-Madda) and `۽` (Sindhi "and" conjunction) brought to the main layer.
+   - `۾` placed in Level 1 (Bottom Left).
+3. **Second Layer (Shift Pheetho Wheel) Reorganization**:
+   - **Sacred Names at Level 1 (Closest to Circle)**: `اللّٰه`, `محمّد`, `ﷺ`.
+   - High-utility Sindhi letters and Heh forms (`ھ`, `ۂ`, `ۃ`, `ٻ`, `ڀ`, `ڌ`, `ٺ`).
+   - Secondary Sindhi & Urdu letters (`ض`, `ظ`, `ڃ`, `ط`, `ڄ`, `ذ`, `ڦ`, `ڇ`, `ڳ`, `غ`, `ڱ`, `ڍ`, `ء`, `ژ`, `ص`, `ف`, `خ`, `ث`).
+4. **Numeric & Airabs Keypad (`NumberLayout.kt`)**:
+   - Side columns dedicated to frequent airabs: `َ` (Zabar), `ِ` (Zer), `ُ` (Pesh), `ّ` (Tashdeed), `ْ` (Jazam), `ً` (Do Zabar), `ٍ` (Do Zer), `ٌ` (Do Pesh), `ٰ` (Khari Zabar), `ـ` (Kashida), `ء` (Hamza).
+   - Full stop (`.`), Sindhi comma (`،`), question mark (`؟`), digits `0-9`, and highlighted Pheetho wheel return button.
+5. **Double-Tap Circle for Full Stop**:
+   - Double-tapping inside the center circle inserts a full stop (`.`).
+   - Configurable from **اشارا (Gestures)** settings: "مرڪز تي ڊبل ٽيپ سان فل اسٽاپ".
+6. **Bottom Padding & Navigation Bar Clearance**:
+   - Elevated keyboard layout by 24dp so the settings gear and sidebar are clear of Android's bottom navigation and minimize bar.
+7. **Pure Sindhi UI**:
+   - Concise noun/action terms throughout settings and setup wizard.
+8. **About Page (ڪيبورڊ بابت)**:
+   - Title: **ڪيبورڊ بابت**
+   - Description: **Inspired by 8Pen concept.**
 
 ---
 
-## 2. Format for Word Suggestion / Prediction Data
+## 2. Updated 4-Axis Frequency Layout (`sd.yaml`)
 
-You can provide your Sindhi suggestion dataset in standard **UTF-8 CSV or TSV format**:
-
-### Format (`word,frequency`):
-```csv
-آھي,120000
-۾,98000
-جي,85000
-کي,79000
-ته,64000
-ڪري,58000
-سنڌ,52000
-پاڪستان,49000
-سان,45000
-ٿيو,41000
-```
-- **Column 1**: Sindhi word (e.g. `سنڌ`)
-- **Column 2**: Frequency count / integer weight (e.g. `52000`)
-- **Location**: Place the file in the repository root or provide the file, and we will place it into `8vim/src/main/assets/word_seed.csv`.
-
----
-
-## 3. 4-Axis Frequency Layout Specification (`sd.yaml`)
-
-| Quadrant | Spoke | Level 1 (Rank 1-8) | Level 2 (Rank 9-16) | Level 3 (Rank 17-24) | Level 4 (Rank 25-32) |
+| Quadrant | Spoke | Level 1 (Inner) | Level 2 | Level 3 | Level 4 (Outer) |
 |---|---|---|---|---|---|
-| **Right ($0^\circ$)** | Top | **ي** (Shift: `ڌ`) | **س** (Shift: `ض`) | **ک** (Shift: `َ`) | **ٽ** (Shift: `ً`) |
-| **Right ($0^\circ$)** | Bottom | **ا** (Shift: `ڳ`) | **ل** (Shift: `ظ`) | **ڻ** (Shift: `ِ`) | **ف** (Shift: `ٍ`) |
-| **Top ($90^\circ$)** | Right | **ن** (Shift: `ٻ`) | **ت** (Shift: `ڃ`) | **ع** (Shift: `ُ`) | **چ** (Shift: `ٌ`) |
-| **Top ($90^\circ$)** | Left | **و** (Shift: `ط`) | **ڪ** (Shift: `غ`) | **ٿ** (Shift: `ّ`) | **ڙ** (Shift: `ْ`) |
-| **Left ($180^\circ$)** | Top | **ر** (Shift: `ڊ`) | **د** (Shift: `ڄ`) | **ش** (Shift: `ٰ`) | **گ** (Shift: `ڱ`) |
-| **Left ($180^\circ$)** | Bottom | **ھ** (Shift: `ٺ`) | **ب** (Shift: `ذ`) | **ڏ** (Shift: `آ`) | **خ** (Shift: `ء`) |
-| **Bottom ($270^\circ$)** | Left | **م** (Shift: `ڀ`) | **پ** (Shift: `ڦ`) | **ق** (Shift: `اللّٰه`) | **ز** (Shift: `محمّد`) |
-| **Bottom ($270^\circ$)** | Right | **ج** (Shift: `ڇ`) | **ئ** (Shift: `ڍ`) | **ح** (Shift: `ﷺ`) | **ص** (Shift: `۽`) |
+| **Right ($0^\circ$)** | Top | **ي** (Shift: `اللّٰه`) | **س** (Shift: `ض`) | **ک** (Shift: `ڳ`) | **ٽ** (Shift: `ص`) |
+| **Right ($0^\circ$)** | Bottom | **ا** (Shift: `محمّد`) | **ل** (Shift: `ظ`) | **ڻ** (Shift: `غ`) | **۽** (Shift: `ف`) |
+| **Top ($90^\circ$)** | Right | **ن** (Shift: `ﷺ`) | **ت** (Shift: `ڃ`) | **ع** (Shift: `ڱ`) | **چ** (Shift: `خ`) |
+| **Top ($90^\circ$)** | Left | **و** (Shift: `ھ`) | **ڪ** (Shift: `ط`) | **ٿ** (Shift: `ڍ`) | **ڙ** (Shift: `ث`) |
+| **Left ($180^\circ$)** | Top | **ر** (Shift: `ٻ`) | **د** (Shift: `ڄ`) | **ش** (Shift: `ۂ`) | **گ** (Shift: `ٰ`) |
+| **Left ($180^\circ$)** | Bottom | **ه** (Shift: `ڀ`) | **ب** (Shift: `ذ`) | **ڏ** (Shift: `ۃ`) | **ڊ** (Shift: `ـ`) |
+| **Bottom ($270^\circ$)** | Left | **۾** (Shift: `ڌ`) | **پ** (Shift: `ڦ`) | **ق** (Shift: `ء`) | **ز** (Shift: `؛`) |
+| **Bottom ($270^\circ$)** | Right | **ج** (Shift: `ٺ`) | **ئ** (Shift: `ڇ`) | **آ** (Shift: `ژ`) | **ح** (Shift: `!`) |
 
 ---
 
-## 4. How to Rebuild and Install
+## 3. How to Rebuild and Install
 
-### Rebuilding:
+### Rebuild:
 ```bash
 ./build-apk.sh
 ```

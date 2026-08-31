@@ -1,21 +1,90 @@
-# 8Vim
+# سنڌي ڦيٿو ڪيبورڊ (Sindhi Pheetho Keyboard)
+### تعويذ وارو ڪيبورڊ — 8Pen ۽ 8Vim جي تصور تي ٻڌل سنڌي اشارن وارو ڪيبورڊ
 
-[![Project Dashboard](https://sourcespy.com/shield.svg)](https://sourcespy.com/github/flide8vim/)
+<p align="center">
+  <img src="8vim/src/main/res/drawable/app_icon.png" alt="سنڌي ڦيٿو ڪيبورڊ" width="128" height="128" />
+</p>
 
-The application was started essentially as a clone of 8pen, which for some reason they have stopped distributing. (I can no longer install it, even though I paid for it!)
+<p align="center">
+  <b>سنڌي ٻوليءَ جو پهريون اشارن (Gestures) ۽ ڦيٿي ذريعي تيز رفتار لکڻ وارو ڪيبورڊ</b>
+</p>
 
-To exactly understand this keyboard, please watch the [video](https://www.youtube.com/watch?v=q3OuCR0EpGo)
+---
 
-|                                                                                    Stable [![Stable](https://img.shields.io/github/v/release/8VIM/8VIM)](https://github.com/8VIM/8VIM/releases/latest) ![F-Droid](https://img.shields.io/f-droid/v/inc.flide.vi8)                                                                                     |  Beta [![Beta](https://img.shields.io/github/v/release/8VIM/8VIM?include_prereleases)](https://github.com/8VIM/8VIM/releases) ![F-Droid](https://img.shields.io/badge/dynamic/yaml?url=https%3A%2F%2Fraw.githubusercontent.com%2F8VIM%2Ffdroid%2Fmain%2Fbadges.yaml&query=%24%5B'8vim_rc'%5D&label=Private%20F-droid%20RC&color=orange)  | Debug ![F-Droid](https://img.shields.io/badge/dynamic/yaml?url=https%3A%2F%2Fraw.githubusercontent.com%2F8VIM%2Ffdroid%2Fmain%2Fbadges.yaml&query=%24%5B'8vim_debug'%5D&label=Private%20F-droid%20Debug&color=orange) |
-| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="80" />](https://f-droid.org/packages/inc.flide.vi8/) [<img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" alt="Get it on Google Play" height="80" />](https://play.google.com/store/apps/details?id=inc.flide.vi8) | [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="80" />](https://github.com/8vim/fdroid) [<img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" alt="Get it on Google Play" height="80" />](https://play.google.com/store/apps/details?id=inc.flide.vi8) |                                       [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="80" />](https://github.com/8vim/fdroid)                                        |
+## 🌟 پس منظر ۽ ڪريڊٽ (Credits & Attribution)
 
-**Manual**: Download and install the APK from the release page.
+- **اصل تصور (Original Concept)**: هي ڪيبورڊ اصل ۾ انقلابي **8Pen** تصور مان متاثر ٿيل آهي، جيڪو اشارن ذريعي تيز ٽائپنگ لاءِ ٺاهيو ويو هو.
+- **اصل اوپن سورس پروجيڪٽ (Upstream Fork)**: هي پروجيڪٽ اوپن سورس [**8Vim**](https://github.com/8VIM/8VIM) تان فورڪ ڪيو ويو آهي. اصل ڊولپرن جا بيحد ٿورائتا آهيون جن هي بنياد فراهم ڪيو.
+- **سنڌي ورزن (Sindhi Redesign & Development)**: سنڌي ٻوليءَ جي 52 اکرن، اعرابن، مخصوص مرڪب اکرن ۽ لفظن جي استعمال جي شرح (Letter Frequencies) مطابق مڪمل نئين نموني ترتيب ڏنو ويو آهي.
 
-## Become a Beta Tester
+---
 
-To become a beta tester please click [here](https://play.google.com/apps/testing/inc.flide.vi8)
+## ✨ خاصيتون (Key Features)
 
-## Usability Guide
+### 1. سنڌي اکرن جي فريڪوئنسي مطابق ڦيٿو (Frequency-based Layout)
+- **پهرين ليول جا سڀ کان اهم 8 اکر**: `ي`, `ا`, `ن`, `و`, `ر`, `ه`, `م`, `ج` مرڪزي دائري جي تمام ويجهو رکيا ويا آهن ته جيئن رڳو هڪ سادي اشاري سان لکي سگهجن.
+- **ٻي، ٽئين ۽ چوٿين ليول جا اکر**: چڪر گهمائڻ سان ترتيبوار نڪرن ٿا.
+- `آ` (الف مده)، `۾` (حرف جر) ۽ `۽` (حرف جملو) مکيه پهرين ليئر تي شامل ڪيا ويا آهن.
 
-The full guide is available [here](https://8vim.github.io/docs/)
+### 2. مقدس نالا ۽ شفٽ ليئر (Sacred Names & Shift Layer)
+- **مقدس لفظ مرڪز وٽ**: احترام ۽ سهولت خاطر `اللّٰه`، `محمّد` ۽ `ﷺ` شفٽ ليئر ۾ بلڪل مرڪزي دائري جي سامهون (Level 1) تي رکيا ويا آهن.
+- ٻيا اهم سنڌي اکر (`ٻ`, `ڀ`, `ڌ`, `ٺ`, `ھ`, `ۂ`, `ۃ`, `ژ` وغيره) شفٽ ليئر تي خوبصورت هلڪي رنگ (Faded) ۾ ڏيکاريل آهن.
+
+### 3. سنڌي ۽ انگريزي لفظن جون تجويزون (Dual-Language Word Predictions)
+- **17,863 کان وڌيڪ سنڌي لفظن جو مڪمل ڊيٽابيس**: سنڌي ڪيبورڊ تي لکڻ دوران مستند سنڌي لفظ پيش ٿيندا.
+- **انگريزي ڪيبورڊ لاءِ ڌار ڊيڪشنري**: انگريزي موڊ ۾ انگريزي لفظ خودڪار پيش ٿيندا.
+- لکڻ سان گڏوگڏ ڪيبورڊ نوان لفظ پاڻمرادو سکندو ۽ ياد رکندو آهي.
+
+### 4. اعرابن ۽ انگن وارو نئون پيڊ (Numbers & Airabs Pad)
+- سڀ عام اعرابون (`َ`, `ِ`, `ُ`, `ّ`, `ْ`, `ً`, `ٍ`, `ٌ`, `ٰ`, `ـ`, `ء`) ۽ نشنبرون (`.`، `،`، `؟`) نئين انداز سان انگن واري پيڊ ۾ ترتيب ڏنل آهن.
+- مين ڦيٿي تي واپس وڃڻ لاءِ خوبصورت رنگين بٽڻ نمايان ڪيو ويو آهي.
+
+### 5. مرڪزي دائري تي ڊبل ٽيپ سان فل اسٽاپ (Double-Tap Full Stop)
+- مرڪزي دائري تي ٻه ڀيرا تيزيءَ سان ٽيپ ڪرڻ سان پاڻمرادو فل اسٽاپ (`.`) لکجي ويندو. (هن فيچر کي سيٽنگس مان آن يا آف ڪري سگهجي ٿو).
+
+### 6. مڪمل سنڌي انٽرفيس (Full Sindhi UI Localization)
+- ايپليڪيشن جون سموريون سيٽنگون، گائيڊ (سکيا)، سيٽ اپ وزرڊ ۽ ڊائلاگ خالص سنڌي ٻوليءَ ۾ ترجمو ڪيل آهن.
+
+### 7. خوبصورت ٿيمز (Custom Color Themes)
+- **سنڌي اجرڪ (Sindhi Ajrak)**: گهاٽو مارون ۽ سنڌي اجرڪي ڳاڙهو رنگ.
+- **زمرد سائو (Emerald Night)**: ٻيلائي سائو ۽ منٽ ايڪسنٽ.
+- **شاهي نيرو (Royal Indigo)**: ناسي نيرو ۽ سونھري.
+- **نيم رات ڪارو (Midnight AMOLED)**: پچ بليڪ ۽ نيون فيروزي.
+- **ٿر جو وارياسو (Sunset Sand)**: وارياسو ۽ گرم نارنگي.
+- **نيون روشني (Cyberpunk Neon)**: برقي واڱڻائي ۽ نيون گلابي.
+
+---
+
+## 📐 4-محوري سنڌي لئـائوٽ نقشو (Layout Map)
+
+| حصو (Quadrant) | طرف (Spoke) | ليول 1 (مرڪز وٽ) | ليول 2 | ليول 3 | ليول 4 (ٻاهر) |
+|---|---|---|---|---|---|
+| **ساڄو ($0^\circ$)** | مٿي | **ي** (Shift: `اللّٰه`) | **س** (Shift: `ض`) | **ک** (Shift: `ڳ`) | **ٽ** (Shift: `ص`) |
+| **ساڄو ($0^\circ$)** | هيٺ | **ا** (Shift: `محمّد`) | **ل** (Shift: `ظ`) | **ڻ** (Shift: `غ`) | **۽** (Shift: `ف`) |
+| **مٿيون ($90^\circ$)** | ساڄي | **ن** (Shift: `ﷺ`) | **ت** (Shift: `ڃ`) | **ع** (Shift: `ڱ`) | **چ** (Shift: `خ`) |
+| **مٿيون ($90^\circ$)** | کاٻي | **و** (Shift: `ھ`) | **ڪ** (Shift: `ط`) | **ٿ** (Shift: `ڍ`) | **ڙ** (Shift: `ث`) |
+| **کاٻو ($180^\circ$)** | مٿي | **ر** (Shift: `ٻ`) | **د** (Shift: `ڄ`) | **ش** (Shift: `ۂ`) | **گ** (Shift: `ٰ`) |
+| **کاٻو ($180^\circ$)** | هيٺ | **ه** (Shift: `ڀ`) | **ب** (Shift: `ذ`) | **ڏ** (Shift: `ۃ`) | **ڊ** (Shift: `ـ`) |
+| **هيٺيون ($270^\circ$)** | کاٻي | **۾** (Shift: `ڌ`) | **پ** (Shift: `ڦ`) | **ق** (Shift: `ء`) | **ز** (Shift: `؛`) |
+| **هيٺيون ($270^\circ$)** | ساڄي | **ج** (Shift: `ٺ`) | **ئ** (Shift: `ڇ`) | **آ** (Shift: `ژ`) | **ح** (Shift: `!`) |
+
+---
+
+## 🛠️ ڪيئن بلڊ ۽ انسٽال ڪجي (Build & Install)
+
+### 1. گهربل اوزار (Prerequisites)
+- **JDK 17**
+- **Android SDK (API 35/36)**
+
+### 2. سڌو APK تيار ڪرڻ (Building APK)
+```bash
+./build-apk.sh
+```
+بلڊ ٿيڻ کان پوءِ APK فائل هتي ملندي:
+`SindhiPheethoKeyboard-debug.apk`
+
+---
+
+## 📄 لائسنس (License)
+
+This project is licensed under the Apache License 2.0 - see upstream [8Vim](https://github.com/8VIM/8VIM) repository for details.
