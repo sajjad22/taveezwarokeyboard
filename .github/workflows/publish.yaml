@@ -152,7 +152,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{always()}}
     steps:
-      - uses: geekyeggo/delete-artifact@v5
+      - uses: geekyeggo/delete-artifact@v6
         with:
           name: |
             artifact-rc
