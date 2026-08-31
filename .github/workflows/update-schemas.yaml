@@ -23,7 +23,7 @@ jobs:
     outputs:
       hash: ${{steps.hash.outputs.hash}}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - id: hash
         run: |
           cd ${{inputs.schema-dir}}
@@ -33,7 +33,7 @@ jobs:
     outputs:
       hash: ${{steps.hash.outputs.hash}}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           token: ${{secrets.PAT}}
           repository: 8VIM/8VIM.github.io
@@ -48,10 +48,10 @@ jobs:
     needs: [local_hash, page_hash]
     if: ${{ needs.local_hash.outputs.hash != needs.page_hash.outputs.hash}}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           path: local
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           token: ${{secrets.PAT}}
           repository: 8VIM/8VIM.github.io

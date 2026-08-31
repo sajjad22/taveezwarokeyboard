@@ -27,7 +27,7 @@ jobs:
       yaml: ${{ steps.changes.outputs.yaml }}
       schemas: ${{ steps.changes.outputs.schemas }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 2
@@ -75,7 +75,7 @@ jobs:
     name: Validate language layouts
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: 8VIM/json-yaml-validate@main
         with:
           schema_dir: ./8vim/src/main/resources/schemas
