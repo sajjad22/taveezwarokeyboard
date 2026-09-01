@@ -1,6 +1,6 @@
-# SindhiPheethoKeyboard (سنڌي ڦيٿو ڪيبورڊ) - Development & Setup Log
+# تعويز وارو ڪيبورڊ (Taveez Waro Keyboard) - Development & Setup Log
 
-This document records the full history of the project, user requests, agent recommendations, environment setup details (what was installed on your PC, where, and why), design decisions for the 4-axis Sindhi Pheetho keyboard layout, letter frequency ranking, faded Shift keys, colored axis, custom app icon, UI translations, and build instructions.
+This document records the full history of the project, user requests, agent recommendations, environment setup details (what was installed on your PC, where, and why), design decisions for the 4-axis Sindhi Taveez keyboard layout, letter frequency ranking, faded Shift keys, colored axis, custom app icon, UI translations, and build instructions.
 
 ---
 
@@ -8,31 +8,32 @@ This document records the full history of the project, user requests, agent reco
 
 ### User Requests & Summary of Features:
 
-1. **Dual Language Prediction Engine (English & Sindhi)**:
+1. **New Name & Identity: تعويز وارو ڪيبورڊ (Taveez Waro Keyboard)**:
+   - App label and launcher name set to **تعويز وارو ڪيبورڊ**.
+   - Custom app vector and high-res icon matching the Taveez / 4-axis geometric layout.
+2. **Fixed `م` and `۾` Placement**:
+   - Standard Meem (`م`) restored to Level 1 (most frequent) on the main layer.
+   - Preposition (`۾`) placed at Level 1 on the Shift layer.
+3. **Punctuation on Main Layer**:
+   - Sindhi question mark (`؟`) placed on the main layer.
+   - Sindhi comma (`،`) and colon (`:`) placed on the Shift layer.
+4. **Airabs Spoke on Shift Layer**:
+   - Dedicated Right-Top spoke on Shift layer for basic airabs: `َ` (Zabar), `ِ` (Zer), `ُ` (Pesh), `ّ` (Tashdeed).
+5. **Sacred Names at Center**:
+   - `اللّٰه`, `محمّد`, `ﷺ` placed at Level 1 (closest to the center circle) on the Shift layer.
+6. **Single-Layer Mode**:
+   - Removed `extra_layers` multi-layer rotation wheel.
+   - Clean, standard English digits & symbols numpad (`NumberLayout.kt`).
+7. **Clipboard Integration**:
+   - Direct clipboard history toggle added to the keyboard sidebar.
+8. **Dual Language Prediction Engine (English & Sindhi)**:
    - English word predictions on English layout (`assets/word_seed_en.csv`).
    - Sindhi word predictions on Sindhi layout (`assets/word_seed_sd.csv` with 17,863 high-frequency words).
-   - Intelligent script detection dynamically separates English and Sindhi learning.
-2. **First Layer (Main Pheetho Wheel) Enhancements**:
-   - Standard Sindhi Heh (`ه`) placed at Level 1 (replacing `ھ`).
-   - `آ` (Alif-Madda) and `۽` (Sindhi "and" conjunction) brought to the main layer.
-   - `۾` placed in Level 1 (Bottom Left).
-3. **Second Layer (Shift Pheetho Wheel) Reorganization**:
-   - **Sacred Names at Level 1 (Closest to Circle)**: `اللّٰه`, `محمّد`, `ﷺ`.
-   - High-utility Sindhi letters and Heh forms (`ھ`, `ۂ`, `ۃ`, `ٻ`, `ڀ`, `ڌ`, `ٺ`).
-   - Secondary Sindhi & Urdu letters (`ض`, `ظ`, `ڃ`, `ط`, `ڄ`, `ذ`, `ڦ`, `ڇ`, `ڳ`, `غ`, `ڱ`, `ڍ`, `ء`, `ژ`, `ص`, `ف`, `خ`, `ث`).
-4. **Numeric & Airabs Keypad (`NumberLayout.kt`)**:
-   - Side columns dedicated to frequent airabs: `َ` (Zabar), `ِ` (Zer), `ُ` (Pesh), `ّ` (Tashdeed), `ْ` (Jazam), `ً` (Do Zabar), `ٍ` (Do Zer), `ٌ` (Do Pesh), `ٰ` (Khari Zabar), `ـ` (Kashida), `ء` (Hamza).
-   - Full stop (`.`), Sindhi comma (`،`), question mark (`؟`), digits `0-9`, and highlighted Pheetho wheel return button.
-5. **Double-Tap Circle for Full Stop**:
+9. **Double-Tap Circle for Full Stop**:
    - Double-tapping inside the center circle inserts a full stop (`.`).
    - Configurable from **اشارا (Gestures)** settings: "مرڪز تي ڊبل ٽيپ سان فل اسٽاپ".
-6. **Bottom Padding & Navigation Bar Clearance**:
-   - Elevated keyboard layout by 24dp so the settings gear and sidebar are clear of Android's bottom navigation and minimize bar.
-7. **Pure Sindhi UI**:
-   - Concise noun/action terms throughout settings and setup wizard.
-8. **About Page (ڪيبورڊ بابت)**:
-   - Title: **ڪيبورڊ بابت**
-   - Description: **Inspired by 8Pen concept.**
+10. **About Page (ڪيبورڊ بابت)**:
+   - Clear introduction in Sindhi and English explaining the Taveez Waro Keyboard concept and 8Pen inspiration.
 
 ---
 
@@ -40,14 +41,14 @@ This document records the full history of the project, user requests, agent reco
 
 | Quadrant | Spoke | Level 1 (Inner) | Level 2 | Level 3 | Level 4 (Outer) |
 |---|---|---|---|---|---|
-| **Right ($0^\circ$)** | Top | **ي** (Shift: `اللّٰه`) | **س** (Shift: `ض`) | **ک** (Shift: `ڳ`) | **ٽ** (Shift: `ص`) |
-| **Right ($0^\circ$)** | Bottom | **ا** (Shift: `محمّد`) | **ل** (Shift: `ظ`) | **ڻ** (Shift: `غ`) | **۽** (Shift: `ف`) |
-| **Top ($90^\circ$)** | Right | **ن** (Shift: `ﷺ`) | **ت** (Shift: `ڃ`) | **ع** (Shift: `ڱ`) | **چ** (Shift: `خ`) |
-| **Top ($90^\circ$)** | Left | **و** (Shift: `ھ`) | **ڪ** (Shift: `ط`) | **ٿ** (Shift: `ڍ`) | **ڙ** (Shift: `ث`) |
-| **Left ($180^\circ$)** | Top | **ر** (Shift: `ٻ`) | **د** (Shift: `ڄ`) | **ش** (Shift: `ۂ`) | **گ** (Shift: `ٰ`) |
-| **Left ($180^\circ$)** | Bottom | **ه** (Shift: `ڀ`) | **ب** (Shift: `ذ`) | **ڏ** (Shift: `ۃ`) | **ڊ** (Shift: `ـ`) |
-| **Bottom ($270^\circ$)** | Left | **۾** (Shift: `ڌ`) | **پ** (Shift: `ڦ`) | **ق** (Shift: `ء`) | **ز** (Shift: `؛`) |
-| **Bottom ($270^\circ$)** | Right | **ج** (Shift: `ٺ`) | **ئ** (Shift: `ڇ`) | **آ** (Shift: `ژ`) | **ح** (Shift: `!`) |
+| **Right ($0^\circ$)** | Top | **ي** (Shift: `َ`) | **س** (Shift: `ِ`) | **ک** (Shift: `ُ`) | **ٽ** (Shift: `ّ`) |
+| **Right ($0^\circ$)** | Bottom | **ا** (Shift: `ض`) | **ل** (Shift: `ظ`) | **ڻ** (Shift: `غ`) | **۽** (Shift: `ط`) |
+| **Top ($90^\circ$)** | Right | **ن** (Shift: `ﷺ`) | **ت** (Shift: `ڃ`) | **ع** (Shift: `،`) | **چ** (Shift: `:`) |
+| **Top ($90^\circ$)** | Left | **و** (Shift: `ھ`) | **ڪ** (Shift: `ف`) | **ٿ** (Shift: `خ`) | **ڙ** (Shift: `ث`) |
+| **Left ($180^\circ$)** | Top | **ر** (Shift: `اللّٰه`) | **د** (Shift: `ٻ`) | **ش** (Shift: `ڄ`) | **گ** (Shift: `ڱ`) |
+| **Left ($180^\circ$)** | Bottom | **ه** (Shift: `محمّد`) | **ب** (Shift: `ڀ`) | **ڏ** (Shift: `ذ`) | **ڊ** (Shift: `ص`) |
+| **Bottom ($270^\circ$)** | Left | **م** (Shift: `۾`) | **پ** (Shift: `ڌ`) | **ق** (Shift: `ڦ`) | **ز** (Shift: `ء`) |
+| **Bottom ($270^\circ$)** | Right | **ج** (Shift: `ٺ`) | **ئ** (Shift: `ڇ`) | **آ** (Shift: `ڍ`) | **؟** (Shift: `ڳ`) |
 
 ---
 

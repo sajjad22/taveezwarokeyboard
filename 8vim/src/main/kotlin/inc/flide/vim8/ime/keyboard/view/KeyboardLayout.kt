@@ -135,6 +135,19 @@ fun RowScope.Sidebar() {
         )
 
         ImageButton(
+            resourceId = R.drawable.clipboard,
+            description = stringRes(R.string.clipboard_button_content_description),
+            onClick = {
+                val nextMode = if (state.imeUiMode == ImeUiMode.CLIPBOARD) {
+                    ImeUiMode.TEXT
+                } else {
+                    ImeUiMode.CLIPBOARD
+                }
+                state.imeUiMode = nextMode
+            }
+        )
+
+        ImageButton(
             resourceId = R.drawable.ic_keyboard_onscreen,
             description = stringRes(R.string.floating_keyboard_button_content_description),
             onClick = {

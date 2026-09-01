@@ -49,13 +49,21 @@ fun AboutScreen() = Screen {
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 24.dp, vertical = 12.dp)
+                .padding(horizontal = 24.dp, vertical = 8.dp)
         ) {
             Text(
-                text = "Inspired by 8Pen concept.",
-                fontSize = 16.sp,
+                text = "تعويز وارو ڪيبورڊ سنڌي ٻوليءَ جو پهريون اشارن ۽ ڦيٿي ذريعي تيز رفتار لکڻ وارو ڪيبورڊ آهي، جيڪو 8Pen تصور ۽ 8Vim پروجيڪٽ مان متاثر ٿي ٺاهيو ويو آهي.",
+                fontSize = 15.sp,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
+            )
+            Text(
+                text = "Inspired by 8Pen concept & built upon 8Vim.",
+                fontSize = 13.sp,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 8.dp)
             )
         }
 
