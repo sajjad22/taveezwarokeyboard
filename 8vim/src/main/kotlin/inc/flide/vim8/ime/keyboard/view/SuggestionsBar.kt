@@ -61,14 +61,33 @@ fun SuggestionsBar() {
                 color = MaterialTheme.colorScheme.primaryContainer,
                 tonalElevation = 6.dp
             ) {
-                Text(
-                    text = previewChar,
-                    fontSize = 24.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.padding(horizontal = 32.dp, vertical = 2.dp)
-                )
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center,
+                    modifier = Modifier.padding(horizontal = 24.dp, vertical = 2.dp)
+                ) {
+                    val parts = previewChar.split("  (")
+                    val mainChar = parts[0]
+                    val hint = if (parts.size > 1) parts[1].removeSuffix(")") else null
+
+                    Text(
+                        text = mainChar,
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                        textAlign = TextAlign.Center
+                    )
+                    if (hint != null) {
+                        Text(
+                            text = " ($hint)",
+                            fontSize = 12.sp,
+                            fontWeight = FontWeight.Medium,
+                            color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.60f),
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier.padding(start = 6.dp)
+                        )
+                    }
+                }
             }
         }
     } else {

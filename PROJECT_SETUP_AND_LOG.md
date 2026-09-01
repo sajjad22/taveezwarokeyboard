@@ -40,13 +40,13 @@ This document records the full history of the project, user requests, agent reco
 | Quadrant | Spoke | Level 1 (Inner) | Level 2 | Level 3 | Level 4 (Outer) |
 |---|---|---|---|---|---|
 | **Right ($0^\circ$)** | Top | **ي** (Shift: `َ`) | **س** (Shift: `ِ`) | **ک** (Shift: `ُ`) | **ٽ** (Shift: `ّ`) |
-| **Right ($0^\circ$)** | Bottom | **ا** (Shift: `ض`) | **ل** (Shift: `ظ`) | **ڻ** (Shift: `غ`) | **۽** (Shift: `ط`) |
-| **Top ($90^\circ$)** | Right | **ن** (Shift: `ﷺ`) | **ت** (Shift: `ڃ`) | **ع** (Shift: `،`) | **چ** (Shift: `:`) |
-| **Top ($90^\circ$)** | Left | **و** (Shift: `ھ`) | **ڪ** (Shift: `ف`) | **ٿ** (Shift: `خ`) | **ڙ** (Shift: `ث`) |
-| **Left ($180^\circ$)** | Top | **ر** (Shift: `اللّٰه`) | **د** (Shift: `ٻ`) | **ش** (Shift: `ڄ`) | **گ** (Shift: `ڱ`) |
-| **Left ($180^\circ$)** | Bottom | **ه** (Shift: `محمّد`) | **ب** (Shift: `ڀ`) | **ڏ** (Shift: `ذ`) | **ڊ** (Shift: `ص`) |
-| **Bottom ($270^\circ$)** | Left | **م** (Shift: `۾`) | **پ** (Shift: `ڌ`) | **ق** (Shift: `ڦ`) | **ز** (Shift: `ء`) |
-| **Bottom ($270^\circ$)** | Right | **ج** (Shift: `ٺ`) | **ئ** (Shift: `ڇ`) | **آ** (Shift: `ڍ`) | **؟** (Shift: `ڳ`) |
+| **Right ($0^\circ$)** | Bottom | **ا** (Shift: `ٻ`) | **ل** (Shift: `ڳ`) | **ڻ** (Shift: `ض`) | **ف** (Shift: `ث`) |
+| **Top ($90^\circ$)** | Right | **ن** (Shift: `ڌ`) | **ت** (Shift: `،`) | **ع** (Shift: `ظ`) | **چ** (Shift: `ڍ`) |
+| **Top ($90^\circ$)** | Left | **و** (Shift: `ھ`) | **ڪ** (Shift: `ط`) | **ٿ** (Shift: `ڃ`) | **ڙ** (Shift: `ڦ`) |
+| **Left ($180^\circ$)** | Top | **ر** (Shift: `ص`) | **د** (Shift: `ڊ`) | **ش** (Shift: `غ`) | **گ** (Shift: `ڱ`) |
+| **Left ($180^\circ$)** | Bottom | **ه** (Shift: `ڀ`) | **ب** (Shift: `ڇ`) | **ڏ** (Shift: `ڄ`) | **خ** (Shift: `ء`) |
+| **Bottom ($270^\circ$)** | Left | **م** (Shift: `۾`) | **پ** (Shift: `ٰ`) | **ق** (Shift: `ذ`) | **ز** (Shift: `ـ`) |
+| **Bottom ($270^\circ$)** | Right | **ج** (Shift: `ٺ`) | **ئ** (Shift: `۽`) | **ح** (Shift: `؟`) | **آ** (Shift: `!`) |
 
 ---
 
