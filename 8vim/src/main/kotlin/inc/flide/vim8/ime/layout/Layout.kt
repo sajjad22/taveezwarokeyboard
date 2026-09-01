@@ -35,7 +35,7 @@ fun embeddedLayouts(
     layoutLoader: LayoutLoader,
     context: Context
 ): List<Pair<EmbeddedLayout, String>> = (R.raw::class.java.fields)
-    .filter { isoCodes.contains(it.name) }
+    .filter { isoCodes.contains(it.name) || it.name.startsWith("sd") || it.name.startsWith("en") }
     .flatMap { field ->
         EmbeddedLayout(field.name)
             .let { layout ->

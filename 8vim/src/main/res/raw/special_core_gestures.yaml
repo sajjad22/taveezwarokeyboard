@@ -52,6 +52,12 @@ layers:
       key_code: select_suggestion_right
     - type: input_key
       movement_sequence:
+        - inside_circle
+        - bottom
+        - inside_circle
+      key_code: shift_toggle
+    - type: input_key
+      movement_sequence:
         - no_touch
         - top
         - left

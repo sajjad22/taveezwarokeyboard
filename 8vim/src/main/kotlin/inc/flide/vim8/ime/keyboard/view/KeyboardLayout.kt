@@ -88,11 +88,11 @@ fun RowScope.Sidebar() {
             resourceId = R.drawable.ic_language,
             description = stringRes(R.string.settings__layouts__title),
             onClick = {
-                val current = prefs.layout.current.get()
-                val nextLayout = if (current.path.toString().contains("sd")) {
-                    inc.flide.vim8.ime.layout.EmbeddedLayout("en")
-                } else {
-                    inc.flide.vim8.ime.layout.EmbeddedLayout("sd")
+                val current = prefs.layout.current.get().path.toString()
+                val nextLayout = when (current) {
+                    "sd" -> inc.flide.vim8.ime.layout.EmbeddedLayout("sd_family")
+                    "sd_family" -> inc.flide.vim8.ime.layout.EmbeddedLayout("en")
+                    else -> inc.flide.vim8.ime.layout.EmbeddedLayout("sd")
                 }
                 prefs.layout.current.set(nextLayout)
             }

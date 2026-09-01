@@ -308,7 +308,17 @@ class KeyboardController(context: Context) : GlideGesture.Listener {
         keyboard.key(modifiedMovementSequence)?.let {
             it.isSelected = true
             currentKey = it
-            keyboardManager.previewChar.value = it.text(activeState.value.isUppercase)
+            val normalText = it.text(false)
+            val shiftText = it.text(true)
+            keyboardManager.previewChar.value = if (normalText != shiftText && shiftText.isNotEmpty()) {
+                if (activeState.value.isUppercase) {
+                    "$shiftText  (⇩ $normalText)"
+                } else {
+                    "$normalText  (⇧ $shiftText)"
+                }
+            } else {
+                it.text(activeState.value.isUppercase)
+            }
         }
     }
 

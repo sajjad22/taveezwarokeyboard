@@ -55,13 +55,13 @@ class SuggestionsManager(
         if (str.last() in WORD_BOUNDARY_CHARS) {
             currentWordLength = 0
             val completedWord = extractWordBeforeBoundary(str)
-            scope.launch {
-                if (completedWord.isNotEmpty()) {
-                    val wordLang = if (completedWord.any { it in '\u0600'..'\u06FF' || it in '\uFB50'..'\uFDFF' || it in '\uFE70'..'\uFEFF' }) "sd" else "en"
+            if (completedWord.isNotEmpty()) {
+                val wordLang = if (completedWord.any { it in '\u0600'..'\u06FF' || it in '\uFB50'..'\uFDFF' || it in '\uFE70'..'\uFEFF' }) "sd" else "en"
+                scope.launch {
                     repository.recordWord(completedWord, wordLang)
                 }
-                _suggestions.value = repository.getTopWords(lang, MAX_SUGGESTIONS)
             }
+            _suggestions.value = emptyList()
         } else {
             val currentWord = extractCurrentWord(str)
             currentWordLength = currentWord.length
