@@ -92,7 +92,7 @@ android {
             versionNameSuffix = "-rc.$versionRc"
         }
 
-        resValue("string", "app_name", "تعويز وارو ڪيبورڊ")
+        resValue("string", "app_name", "تعويذ وارو ڪيبورڊ")
         resValue("string", "version_name", "$versionName${versionNameSuffix.orEmpty()}")
 
         vectorDrawables.useSupportLibrary = true
@@ -122,7 +122,7 @@ android {
         named("debug") {
             isDebuggable = true
             applicationIdSuffix = if (prNumber != null) ".pr$prNumber" else ".debug"
-            resValue("string", "app_name", "تعويز وارو ڪيبورڊ")
+            resValue("string", "app_name", "تعويذ وارو ڪيبورڊ")
             enableUnitTestCoverage = true
 //            Activate R8 in debug mode, good to check if any new library added works
 //            isMinifyEnabled = true
@@ -131,7 +131,7 @@ android {
 
         named("release") {
             isMinifyEnabled = true
-            resValue("string", "app_name", "تعويز وارو ڪيبورڊ")
+            resValue("string", "app_name", "تعويذ وارو ڪيبورڊ")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -144,7 +144,7 @@ android {
         create("rc") {
             initWith(getByName("release"))
             applicationIdSuffix = ".rc"
-            resValue("string", "app_name", "تعويز وارو ڪيبورڊ")
+            resValue("string", "app_name", "تعويذ وارو ڪيبورڊ")
         }
     }
 

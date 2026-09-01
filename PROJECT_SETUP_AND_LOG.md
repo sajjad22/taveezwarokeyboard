@@ -1,4 +1,4 @@
-# تعويز وارو ڪيبورڊ (Taveez Waro Keyboard) - Development & Setup Log
+# تعويذ وارو ڪيبورڊ (Taveez Waro Keyboard) - Development & Setup Log
 
 This document records the full history of the project, user requests, agent recommendations, environment setup details (what was installed on your PC, where, and why), design decisions for the 4-axis Sindhi Taveez keyboard layout, letter frequency ranking, faded Shift keys, colored axis, custom app icon, UI translations, and build instructions.
 
@@ -8,8 +8,8 @@ This document records the full history of the project, user requests, agent reco
 
 ### User Requests & Summary of Features:
 
-1. **New Name & Identity: تعويز وارو ڪيبورڊ (Taveez Waro Keyboard)**:
-   - App label and launcher name set to **تعويز وارو ڪيبورڊ**.
+1. **New Name & Identity: تعويذ وارو ڪيبورڊ (Taveez Waro Keyboard)**:
+   - App label and launcher name set to **تعويذ وارو ڪيبورڊ**.
    - Custom app vector and high-res icon matching the Taveez / 4-axis geometric layout.
 2. **Fixed `م` and `۾` Placement**:
    - Standard Meem (`م`) restored to Level 1 (most frequent) on the main layer.
@@ -19,20 +19,18 @@ This document records the full history of the project, user requests, agent reco
    - Sindhi comma (`،`) and colon (`:`) placed on the Shift layer.
 4. **Airabs Spoke on Shift Layer**:
    - Dedicated Right-Top spoke on Shift layer for basic airabs: `َ` (Zabar), `ِ` (Zer), `ُ` (Pesh), `ّ` (Tashdeed).
-5. **Sacred Names at Center**:
-   - `اللّٰه`, `محمّد`, `ﷺ` placed at Level 1 (closest to the center circle) on the Shift layer.
-6. **Single-Layer Mode**:
+5. **Single-Layer Mode**:
    - Removed `extra_layers` multi-layer rotation wheel.
    - Clean, standard English digits & symbols numpad (`NumberLayout.kt`).
-7. **Clipboard Integration**:
+6. **Clipboard Integration**:
    - Direct clipboard history toggle added to the keyboard sidebar.
-8. **Dual Language Prediction Engine (English & Sindhi)**:
+7. **Dual Language Prediction Engine (English & Sindhi)**:
    - English word predictions on English layout (`assets/word_seed_en.csv`).
    - Sindhi word predictions on Sindhi layout (`assets/word_seed_sd.csv` with 17,863 high-frequency words).
-9. **Double-Tap Circle for Full Stop**:
+8. **Double-Tap Circle for Full Stop**:
    - Double-tapping inside the center circle inserts a full stop (`.`).
    - Configurable from **اشارا (Gestures)** settings: "مرڪز تي ڊبل ٽيپ سان فل اسٽاپ".
-10. **About Page (ڪيبورڊ بابت)**:
+9. **About Page (ڪيبورڊ بابت)**:
    - Clear introduction in Sindhi and English explaining the Taveez Waro Keyboard concept and 8Pen inspiration.
 
 ---
