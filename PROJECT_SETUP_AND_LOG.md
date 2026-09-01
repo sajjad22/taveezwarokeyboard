@@ -58,10 +58,10 @@ This document records the full history of the project, user requests, agent reco
 ```
 
 ### Ready APK:
-👉 **[`/home/sajjad/sindhivim/SindhiPheethoKeyboard-debug.apk`](file:///home/sajjad/sindhivim/SindhiPheethoKeyboard-debug.apk)** *(Size: 22 MB)*
+👉 **[`/home/sajjad/sindhivim/TaveezWaroKeyboard-debug.apk`](file:///home/sajjad/sindhivim/TaveezWaroKeyboard-debug.apk)** *(Size: 24 MB)*
 
 ### Transfer to Phone:
 ```bash
 python3 -m http.server 8080
 ```
-Open `http://<laptop-ip>:8080/SindhiPheethoKeyboard-debug.apk` on your phone browser and tap install.
+Open `http://<laptop-ip>:8080/TaveezWaroKeyboard-debug.apk` on your phone browser and tap install.

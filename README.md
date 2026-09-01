@@ -76,7 +76,7 @@
 ./build-apk.sh
 ```
 بلڊ ٿيڻ کان پوءِ APK فائل هتي ملندي:
-`SindhiPheethoKeyboard-debug.apk`
+`TaveezWaroKeyboard-debug.apk`
 
 ---
 
