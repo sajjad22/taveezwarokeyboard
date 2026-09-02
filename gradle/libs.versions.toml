@@ -30,7 +30,7 @@ slf4j = "2.0.16"
 # Testing
 androidx-test-core = "1.7.0"
 androidx-test-runner = "1.6.2"
-kotest-runner-android = "1.1.1"
+kotest-runner-android = "1.2.3"
 kotest-assertions-android = "1.1.1"
 kotest = "5.9.1"
 kotest-arrow = "1.4.0"
