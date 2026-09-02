@@ -52,13 +52,13 @@ fun AboutScreen() = Screen {
                 .padding(horizontal = 24.dp, vertical = 8.dp)
         ) {
             Text(
-                text = "تعويذ وارو ڪيبورڊ سنڌي ٻوليءَ جو پهريون اشارن ۽ ڦيٿي ذريعي تيز رفتار لکڻ وارو ڪيبورڊ آهي، جيڪو 8Pen تصور ۽ 8Vim پروجيڪٽ مان متاثر ٿي ٺاهيو ويو آهي.",
+                text = "تعويذ وارو ڪيبورڊ سنڌي، اردو ۽ انگريزي ٻولين جو پهريون اشارن ۽ ڦيٿي ذريعي تيز رفتار لکڻ وارو ڪيبورڊ آهي، جيڪو 8Pen تصور مان متاثر ٿي ٺاهيو ويو آهي.",
                 fontSize = 15.sp,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
             )
             Text(
-                text = "Inspired by 8Pen concept & built upon 8Vim.",
+                text = "Taveez Waro Keyboard is a gesture and wheel-based typing system for Sindhi, Urdu, and English, inspired by the 8Pen concept.",
                 fontSize = 13.sp,
                 textAlign = TextAlign.Center,
                 modifier = Modifier

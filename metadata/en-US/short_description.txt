@@ -1,1 +1,1 @@
-A small screen keyboard inspired by VIM and 8Pen
+A talismanic wheel keyboard for Sindhi, Urdu, and English inspired by 8Pen

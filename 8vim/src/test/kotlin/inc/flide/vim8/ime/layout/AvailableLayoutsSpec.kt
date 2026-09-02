@@ -43,6 +43,7 @@ class AvailableLayoutsSpec : WordSpec({
 
     beforeSpec {
         mockkStatic(::appPreferenceModel)
+        mockkStatic("inc.flide.vim8.ime.layout.LayoutKt")
         mockkStatic(::embeddedLayouts)
         mockkStatic(String::toCustomLayout)
 

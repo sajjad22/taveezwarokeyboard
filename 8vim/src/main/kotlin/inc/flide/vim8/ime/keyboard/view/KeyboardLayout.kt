@@ -89,12 +89,9 @@ fun RowScope.Sidebar() {
             description = stringRes(R.string.settings__layouts__title),
             onClick = {
                 val current = prefs.layout.current.get().path.toString()
-                val nextLayout = if (current == "sd") {
-                    inc.flide.vim8.ime.layout.EmbeddedLayout("en")
-                } else {
-                    inc.flide.vim8.ime.layout.EmbeddedLayout("sd")
-                }
-                prefs.layout.current.set(nextLayout)
+                val order = listOf("sd", "ur", "en")
+                val nextIdx = (order.indexOf(current) + 1).let { if (it in order.indices) it else 0 }
+                prefs.layout.current.set(inc.flide.vim8.ime.layout.EmbeddedLayout(order[nextIdx]))
             }
         )
 

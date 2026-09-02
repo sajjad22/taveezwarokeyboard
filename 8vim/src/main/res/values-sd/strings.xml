@@ -74,7 +74,7 @@
 
     <string name="settings__layouts__title" comment="Title of Layout screen">ٻوليون</string>
     <string name="settings__layouts__select__title">ٻولي</string>
-    <string name="settings__layouts__select__summary">سنڌي يا انگريزي</string>
+    <string name="settings__layouts__select__summary">سنڌي، اردو يا انگريزي</string>
     <string name="settings__layouts__load_custom__title">ڪسٽم فائل</string>
     <string name="settings__layouts__load_custom__summary">پنهنجي YAML فائل داخل ڪريو</string>
 
