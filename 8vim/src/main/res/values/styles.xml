@@ -27,7 +27,7 @@
         <item name="postSplashScreenTheme">@style/AppTheme.NoActionBar</item>
         <item name="windowSplashScreenBackground">@android:color/white</item>
         <item name="windowSplashScreenIconBackgroundColor">@android:color/white</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/app_icon</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
     </style>
 </resources>

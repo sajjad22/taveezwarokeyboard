@@ -140,8 +140,11 @@ data class EmbeddedLayout(override val path: String) : Layout<String> {
     @SuppressLint("DiscouragedApi")
     override fun inputStream(context: Context): Either<LayoutError, InputStream> {
         val resources = context.resources
-        val resourceId =
-            resources.getIdentifier(path, "raw", context.packageName)
+        val resourceId = tryOrNull {
+            R.raw::class.java.getField(path).getInt(null)
+        } ?: resources.getIdentifier(path, "raw", context.packageName).let { id ->
+            if (id != 0) id else resources.getIdentifier(path, "raw", "inc.flide.vim8")
+        }
         return catch({
             resources.openRawResource(resourceId).right()
         }) { e: Throwable -> ExceptionWrapperError(e).left() }

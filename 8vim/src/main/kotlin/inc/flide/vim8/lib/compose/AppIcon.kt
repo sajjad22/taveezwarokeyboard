@@ -16,7 +16,7 @@ fun AppIcon() {
         modifier = Modifier
             .requiredSize(100.dp)
             .clip(CircleShape),
-        painter = painterResource(R.drawable.app_icon),
+        painter = painterResource(R.mipmap.ic_launcher),
         contentDescription = stringRes(R.string.app_name)
     )
 }
