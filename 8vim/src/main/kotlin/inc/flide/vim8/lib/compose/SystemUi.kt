@@ -64,10 +64,12 @@ private fun rememberSystemUiController(): AppSystemUiController {
 }
 
 private class AppSystemUiController(view: View) {
-    private val window = view.context.findWindow()!!
-    private val windowInsetsController = WindowInsetsControllerCompat(window, view)
+    private val window = view.context.findWindow()
+    private val windowInsetsController = window?.let { WindowInsetsControllerCompat(it, view) }
 
     fun setStatusBarColor(color: Color, darkIcons: Boolean) {
+        val window = window ?: return
+        val windowInsetsController = windowInsetsController ?: return
         statusBarDarkContentEnabled = darkIcons
 
         window.statusBarColor = when {
@@ -84,6 +86,7 @@ private class AppSystemUiController(view: View) {
         darkIcons: Boolean,
         navigationBarContrastEnforced: Boolean
     ) {
+        val window = window ?: return
         if (AndroidVersion.ATLEAST_API26_O) {
             navigationBarDarkContentEnabled = darkIcons
             isNavigationBarContrastEnforced = navigationBarContrastEnforced
@@ -93,29 +96,31 @@ private class AppSystemUiController(view: View) {
     }
 
     var statusBarDarkContentEnabled: Boolean
-        get() = windowInsetsController.isAppearanceLightStatusBars
+        get() = windowInsetsController?.isAppearanceLightStatusBars ?: false
         set(value) {
-            windowInsetsController.isAppearanceLightStatusBars = value
+            windowInsetsController?.isAppearanceLightStatusBars = value
         }
 
     var navigationBarDarkContentEnabled: Boolean
-        get() = windowInsetsController.isAppearanceLightNavigationBars
+        get() = windowInsetsController?.isAppearanceLightNavigationBars ?: false
         set(value) {
-            windowInsetsController.isAppearanceLightNavigationBars = value
+            windowInsetsController?.isAppearanceLightNavigationBars = value
         }
 
     var isNavigationBarContrastEnforced: Boolean
-        get() = AndroidVersion.ATLEAST_API29_Q && window.isNavigationBarContrastEnforced
+        get() = AndroidVersion.ATLEAST_API29_Q && (window?.isNavigationBarContrastEnforced ?: false)
         set(value) {
             if (AndroidVersion.ATLEAST_API29_Q) {
-                window.isNavigationBarContrastEnforced = value
+                window?.isNavigationBarContrastEnforced = value
             }
         }
 }
 
 private tailrec fun Context.findWindow(): Window? {
-    val context = this
-    if (context is Activity) return context.window
-    if (context is InputMethodService) return context.window?.window
-    return if (context is ContextWrapper) context.findWindow() else null
+    return when (this) {
+        is Activity -> window
+        is InputMethodService -> window?.window
+        is ContextWrapper -> baseContext?.findWindow()
+        else -> null
+    }
 }
