@@ -1,9 +1,9 @@
 # تعويذ وارو ڪيبورڊ (Taveez Waro Keyboard)
 
-**Taveez Waro Keyboard** is a fast gesture and wheel-based Android keyboard for **Sindhi (سنڌي)**, **Urdu (اردو)**, and **English**, inspired by the 8Pen concept.
+**Taveez Waro Keyboard** is a fast gesture and wheel-based Android keyboard for **Sindhi (سنڌي)** and **English**, inspired by the 8Pen concept.
 
 ### ✨ Features
 - **4-Concentric-Ring Frequency Layouts**: All letters ordered by authentic language frequency, placing the top 8 most frequent letters directly on the first ring next to the center circle.
-- **Full Support for Sindhi, Urdu, and English**: Easy language cycling directly from the sidebar globe button or settings.
+- **Full Support for Sindhi and English**: Easy language cycling directly from the sidebar globe button or settings.
 - **Smart Gestures & Quick Shift**: Intuitive gesture paths for capitals, airabs (اعراب), punctuation, cursor movements, and text replacement.
 - **Offline & Private**: Completely offline with zero data collection.
