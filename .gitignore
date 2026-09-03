@@ -21,3 +21,10 @@ Security files/
 8vim/release/
 
 fastlane/report.xml
+
+RELEASE_AND_PUBLISHING_GUIDE.md
+*.jks
+*.keystore
+keystore.properties
+crash_log.txt
+*.apk
