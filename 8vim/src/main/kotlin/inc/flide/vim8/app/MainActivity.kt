@@ -24,6 +24,7 @@ import androidx.core.view.WindowCompat
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import inc.flide.vim8.appPreferenceModel
+import inc.flide.vim8.colorScheme
 import inc.flide.vim8.datastore.model.observeAsState
 import inc.flide.vim8.ime.layout.AvailableLayouts
 import inc.flide.vim8.layoutLoader

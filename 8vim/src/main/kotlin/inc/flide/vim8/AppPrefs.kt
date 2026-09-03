@@ -23,6 +23,20 @@ import inc.flide.vim8.theme.lightColorPalette
 
 fun appPreferenceModel() = Datastore.getOrCreatePreferenceModel(AppPrefs::class, ::AppPrefs)
 
+@Composable
+fun AppPrefs.Theme.colorScheme(): ColorScheme {
+    val context = LocalContext.current
+    val mode by this.mode.observeAsState()
+    return when (mode) {
+        ThemeMode.LIGHT -> lightColorPalette(context)
+        ThemeMode.DARK -> darkColorPalette(context)
+        else -> when {
+            isSystemInDarkTheme() -> darkColorPalette(context)
+            else -> lightColorPalette(context)
+        }
+    }
+}
+
 class AppPrefs : PreferenceModel(9) {
     val layout = Layout()
     val theme = Theme()
@@ -100,20 +114,6 @@ class AppPrefs : PreferenceModel(9) {
             key = "prefs_theme_color_mode",
             default = ThemeMode.SYSTEM
         )
-
-        @Composable
-        fun colorScheme(): ColorScheme {
-            val context = LocalContext.current
-            val mode by this.mode.observeAsState()
-            return when (mode) {
-                ThemeMode.LIGHT -> lightColorPalette(context)
-                ThemeMode.DARK -> darkColorPalette(context)
-                else -> when {
-                    isSystemInDarkTheme() -> darkColorPalette(context)
-                    else -> lightColorPalette(context)
-                }
-            }
-        }
     }
 
     inner class Keyboard {
