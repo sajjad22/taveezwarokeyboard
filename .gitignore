@@ -28,3 +28,4 @@ RELEASE_AND_PUBLISHING_GUIDE.md
 keystore.properties
 crash_log.txt
 *.apk
+sign-release.sh
