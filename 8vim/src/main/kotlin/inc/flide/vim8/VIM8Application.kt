@@ -44,6 +44,22 @@ class VIM8Application : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        val defaultHandler = Thread.getDefaultUncaughtExceptionHandler()
+        Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
+            try {
+                val sw = java.io.StringWriter()
+                val pw = java.io.PrintWriter(sw)
+                throwable.printStackTrace(pw)
+                val stackTrace = sw.toString()
+                android.util.Log.e("TaveezCrash", "Uncaught exception", throwable)
+                inc.flide.vim8.app.CrashActivity.start(this@VIM8Application, stackTrace)
+                android.os.Process.killProcess(android.os.Process.myPid())
+                System.exit(10)
+            } catch (_: Throwable) {
+                defaultHandler?.uncaughtException(thread, throwable)
+            }
+        }
+
         vim8ApplicationReference = WeakReference(this)
         prefs.initialize(this)
 
